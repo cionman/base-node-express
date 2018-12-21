@@ -6,6 +6,8 @@ const path = require('path');
 const session = require('express-session');
 const flash = require('connect-flash');
 const pageRouter  = require('./routes/routes');
+const twig  = require('twig');
+
 const app = express();
 const sequelize = require('./models').sequelize;
 
@@ -13,9 +15,8 @@ require('dotenv').config();
 
 /* 일반설정 */
 app.set('views', path.join(__dirname, 'views')); //view 디렉토리 설정
-app.set('view engine', 'ejs'); // 템플릿 엔진 설정
+app.set('view engine', 'twig'); // 템플릿 엔진 설정
 app.set('port', process.env.PORT || 8001); //포트 설정
-app.engine('html', require('ejs').renderFile);
 
 /* 미들웨어 */
 app.use(morgan("dev")); //로깅
@@ -47,7 +48,6 @@ app.use((err, req,res)=>{
   res.render('error');
 });
 
-//
 app.listen(app.get('port'), ()=>{
   console.log(app.get('port'), '번 포트에서 대기 중');
 });

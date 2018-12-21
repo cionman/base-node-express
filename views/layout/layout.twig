@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        {% include "../include/head.twig" %}
+        {% block customcss %}
+        {% endblock %}
+    </head>
+
+    <body>
+        {% block contents %}
+
+        {% endblock %}
+        {% include "../include/js.twig" %}
+        {% block customjs %}
+        {% endblock %}
+        {% if messages %}
+        <script>
+          {% for message in messages %}
+          {% if message.level >= DEFAULT_MESSAGE_LEVELS.WARNING  %}
+          alert('{{ message }}');
+          {% endif %}
+          {% endfor %}
+        </script>
+        {% endif %}
+    </body>
+</html>
