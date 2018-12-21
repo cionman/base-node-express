@@ -6,8 +6,10 @@ const path = require('path');
 const session = require('express-session');
 const flash = require('connect-flash');
 const pageRouter  = require('./routes/routes');
-require('dotenv').config();
 const app = express();
+const sequelize = require('./models').sequelize;
+
+require('dotenv').config();
 
 /* 일반설정 */
 app.set('views', path.join(__dirname, 'views')); //view 디렉토리 설정
