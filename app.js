@@ -6,9 +6,10 @@ const path = require('path');
 const session = require('express-session');
 const flash = require('connect-flash');
 const twig  = require('twig');
-
+const helmet = require('helmet');
 const app = express();
-const sequelize = require('./models').sequelize;
+const sequelize = require('./src/models').sequelize;
+
 
 require('dotenv').config();
 
@@ -18,6 +19,7 @@ app.set('view engine', 'twig'); // 템플릿 엔진 설정
 app.set('port', process.env.PORT || 8001); //포트 설정
 
 /* 미들웨어 */
+app.use(helmet());  //보안 모듈
 app.use(morgan("dev")); //로깅
 app.use(express.static(path.join(__dirname,'static'))); //정적 리소스 설정
 app.use(express.json()); //json
@@ -35,8 +37,8 @@ app.use(session({  //세션
 app.use(flash());
 
 /* 라우터 영역 */
-app.use('/', require('./controller/home').router);
-app.use('/example', require('./controller/example').router)
+app.use('/', require('./src/controller/home').router);
+app.use('/example', require('./src/controller/example').router)
 
 /* 에러 핸들러: 라우팅 설정 아래에 있어야 한다. 그래야 404 처리 가능*/
 app.use((req, res, next)=>{
