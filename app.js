@@ -5,7 +5,6 @@ const morgan = require('morgan');
 const path = require('path');
 const session = require('express-session');
 const flash = require('connect-flash');
-const pageRouter  = require('./routes/routes');
 const twig  = require('twig');
 
 const app = express();
@@ -34,13 +33,18 @@ app.use(session({  //세션
   }
 }));
 app.use(flash());
-app.use('/', pageRouter);
 
+/* 라우터 영역 */
+app.use('/', require('./controller/home').router);
+app.use('/example', require('./controller/example').router)
+
+/* 에러 핸들러: 라우팅 설정 아래에 있어야 한다. 그래야 404 처리 가능*/
 app.use((req, res, next)=>{
   const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
+
 app.use((err, req,res)=>{
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -48,6 +52,8 @@ app.use((err, req,res)=>{
   res.render('error');
 });
 
+
+/* 서버 구동 */
 app.listen(app.get('port'), ()=>{
   console.log(app.get('port'), '번 포트에서 대기 중');
 });
