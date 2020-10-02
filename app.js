@@ -84,9 +84,9 @@ class App {
   }
 
   setLocals() {
-    // 템플릿 변수
+    // 템플릿에 사용할 전역 변수
     this.app.use((req, res, next) => {
-      this.app.locals.isLogin = true;
+      this.app.locals.isLogin = true; //TODO 로그인 여부 작업 필요
       this.app.locals.req_path = req.path;
       next();
     });
