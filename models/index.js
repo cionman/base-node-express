@@ -12,7 +12,16 @@ let sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
+  sequelize = new Sequelize(config.database, config.username, config.password, {
+    host: config.host,
+    dialect: 'mysql',
+    timezone: '+09:00', //한국 시간 셋팅
+    pool: {
+      max: 5,
+      min: 0,
+      idle: 10000
+    }
+  });
 }
 
 fs

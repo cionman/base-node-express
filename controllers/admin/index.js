@@ -29,13 +29,17 @@ router.get('/products/write', (_, res) => {
 });
 
 router.post('/products/write', (req, res) => {
-        models.products.create({
+
+    models.products.create(req.body).then(() => {
+        res.redirect('/admin/products');
+    })
+        /*models.products.create({
             name: req.body.name,
             price: req.body.price,
             description: req.body.description
         }).then(() => {
             res.redirect('/admin/products');
-        });
+        });*/
     }
 );
 
