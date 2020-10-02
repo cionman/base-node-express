@@ -66,7 +66,7 @@ router.get('/cheerio/:invc_no', wrapAsync(async (req, res) => {
 
 router.get('/puppeteer/kospi', wrapAsync(async (req, res) => {
 
-    wrapPuppeteer(async (page) => {
+    await wrapPuppeteer(async (page) => {
         // 웹사이트 로딩
         await page.goto('https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query=%EC%BD%94%EC%8A%A4%ED%94%BC', {timeout: 0, waitUntil: 'domcontentloaded'});
 
@@ -79,7 +79,7 @@ router.get('/puppeteer/kospi', wrapAsync(async (req, res) => {
 
 router.get('/puppeteer/example', wrapAsync(async (req, res) => {
 
-    wrapPuppeteer(async (page) => {
+    await wrapPuppeteer( async (page) => {
         // 웹사이트 로딩
         await page.goto('http://localhost:8001/admin/products/write', {timeout: 0, waitUntil: 'domcontentloaded'});
 
