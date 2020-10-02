@@ -9,12 +9,17 @@ const compression = require('compression');
 const helmet = require("helmet");
 const nunjucks = require("nunjucks");
 const bodyParser = require("body-parser");
+const db = require('./models');
 
 require("dotenv").config();
 
 class App {
   constructor() {
     this.app = express();
+
+
+    // db 접속
+    this.dbConnection();
 
     //포트 설정
     this.setPort();
@@ -41,6 +46,24 @@ class App {
   setPort() {
     this.app.set("port", process.env.PORT || 8001); //포트 설정
   }
+
+  dbConnection(){
+    // DB authentication
+    db.sequelize.authenticate()
+        .then(() => {
+          console.log('Connection has been established successfully.');
+          //테이블 동기화
+          // This will run .sync() only if database name ends with '_test'
+          return db.sequelize.sync({ alter: true, match: /_test$/ });
+        })
+        .then(() => {
+          console.log('DB Sync complete.');
+        })
+        .catch(err => {
+          console.error('Unable to connect to the database:', err);
+        });
+  }
+
 
   /* 미들웨어 */
   setMiddleWare() {
@@ -103,9 +126,10 @@ class App {
     });
 
     this.app.use((err, req, res, _) => {
+      console.error('error :', err)
       res.locals.message = err.message;
       res.locals.error = req.app.get("env") === "development" ? err : {};
-      res.locals.status(err.status || 500);
+      res.locals.status = err.status || 500;
       res.status(500).render("common/500.html");
     });
   }

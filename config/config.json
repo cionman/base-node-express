@@ -1,23 +1,22 @@
 {
   "development": {
     "username": "root",
-    "password": "qwer1357&m",
-    "database": "nodejs",
+    "password": null,
+    "database": "base_node_test",
     "host": "127.0.0.1",
-    "dialect": "mysql",
-    "logging": true
+    "dialect": "mysql"
   },
   "test": {
     "username": "root",
     "password": null,
-    "database": "database_test",
+    "database": "base_node_test",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
     "password": null,
-    "database": "database_production",
+    "database": "base_node",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }
