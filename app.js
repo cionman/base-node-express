@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const path = require("path");
 const session = require("express-session");
 const flash = require("connect-flash");
+const compression = require('compression');
 const helmet = require("helmet");
 const nunjucks = require("nunjucks");
 const bodyParser = require("body-parser");
@@ -43,6 +44,13 @@ class App {
 
   /* 미들웨어 */
   setMiddleWare() {
+    this.app.use(compression({ filter: (req, res) => {
+        if (req.headers['x-no-compression']) {
+          return false
+        }
+        return compression.filter(req, res)
+      }
+    })); // gzip 압축 모듈
     this.app.use(helmet()); //보안 모듈
     this.app.use(morgan("dev")); //로깅
     this.app.use(express.static(path.join(__dirname, "static"))); //정적 리소스 설정
