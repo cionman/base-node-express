@@ -7,5 +7,6 @@ function adminRequired(req, res, next) {
 }
 
 router.use('/admin', adminRequired, require('./admin'));
+router.use('/crawling', adminRequired, require('./crawling'));
 
 module.exports = router;
