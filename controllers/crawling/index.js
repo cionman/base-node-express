@@ -3,7 +3,7 @@ const router = Router();
 const models = require('../../models');
 const request = require('request-promise');
 const cheerio = require('cheerio');
-const { wrapAsync } = require('../../util/func');
+const { wrapAsync, wrapPuppeteer } = require('../../util/func');
 const puppeteer = require('puppeteer');
 
 //입력 할 텍스트
@@ -66,45 +66,33 @@ router.get('/cheerio/:invc_no', wrapAsync(async (req, res) => {
 
 router.get('/puppeteer/kospi', wrapAsync(async (req, res) => {
 
-    // 브라우저 열기
-    const browser = await puppeteer.launch({
-        //headless: false //false인 경우 브라우저가 노출된다.
-    });
-    const page = await browser.newPage();
+    wrapPuppeteer(async (page) => {
+        // 웹사이트 로딩
+        await page.goto('https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query=%EC%BD%94%EC%8A%A4%ED%94%BC', {timeout: 0, waitUntil: 'domcontentloaded'});
 
-
-    // 웹사이트 로딩
-    await page.goto('https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query=%EC%BD%94%EC%8A%A4%ED%94%BC', {timeout: 0, waitUntil: 'domcontentloaded'});
-
-    // 상단 테이블의 th 제목을 가져오고 싶은경우
-    const kospiScore = await page.$eval('.spt_con strong', strong => strong.textContent.trim() );
-    res.send(kospiScore);
-    // 브라우저 닫기
-    await browser.close();
+        // 상단 테이블의 th 제목을 가져오고 싶은경우
+        const kospiScore = await page.$eval('.spt_con strong', strong => strong.textContent.trim() );
+        res.send(kospiScore);
+    })
 }));
 
 
 router.get('/puppeteer/example', wrapAsync(async (req, res) => {
-    // 브라우저 열기
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
 
+    wrapPuppeteer(async (page) => {
+        // 웹사이트 로딩
+        await page.goto('http://localhost:8001/admin/products/write', {timeout: 0, waitUntil: 'domcontentloaded'});
 
-    // 웹사이트 로딩
-    await page.goto('http://localhost:8001/admin/products/write', {timeout: 0, waitUntil: 'domcontentloaded'});
-
-    //selector가 나타날때까지 기다림
-    await page.waitForSelector('.btn-primary');
-    await page.evaluate((a, b) => {
-        document.querySelector('input[name=name]').value = a;
-        document.querySelector('input[name=price]').value = 5000;
-        document.querySelector('input[name=description]').value = b;
-    }, insert_name, insert_description)
-    await page.click('.btn-primary');
-
-    // 브라우저 닫기
-    await browser.close();
-    res.send('puppeteer로 상품 입력 성공')
+        //selector가 나타날때까지 기다림
+        await page.waitForSelector('.btn-primary');
+        await page.evaluate((a, b) => {
+            document.querySelector('input[name=name]').value = a;
+            document.querySelector('input[name=price]').value = 5000;
+            document.querySelector('input[name=description]').value = b;
+        }, insert_name, insert_description)
+        await page.click('.btn-primary');
+        res.send('puppeteer로 상품 입력 성공')
+    })
 }));
 
 
