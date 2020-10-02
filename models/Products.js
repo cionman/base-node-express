@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         {
             sequelize,
             timestamps: true,
-            modelName: 'products',
+            modelName: 'Products',
             tableName: 'TB_PRODUCTS',
             indexes: [{ unique: false, fields: ['name'] }],
             createdAt:"createdDate",

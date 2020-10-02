@@ -18,7 +18,7 @@ router.get('/', testMiddleWare, testMiddleWare2, (req, res) => {
 });
 
 router.get('/products', async (_, res) => {
-    const products = await models.products.findAll({});
+    const products = await models.Products.findAll({});
     res.render('admin/products.html', {products, message: "<h1>hello</h1><script>alert()</script>"});
 });
 
@@ -28,11 +28,11 @@ router.get('/products/write', (_, res) => {
 
 router.post('/products/write', async (req, res) => {
 
-    await models.products.create(req.body);
+    await models.Products.create(req.body);
     res.redirect('/admin/products');
 
 
-        /*models.products.create({
+        /*models.Products.create({
             name: req.body.name,
             price: req.body.price,
             description: req.body.description
@@ -43,18 +43,18 @@ router.post('/products/write', async (req, res) => {
 );
 
 router.get('/products/detail/:id', async (req, res) => {
-    const product = await models.products.findByPk(req.params.id);
+    const product = await models.Products.findByPk(req.params.id);
     res.render('admin/detail.html', {product: product})
 });
 
 router.get('/products/edit/:id', async (req, res) => {
     //기존에 폼에 value안에 값을 셋팅하기 위해 만든다.
-    const product = await models.products.findByPk(req.params.id)
+    const product = await models.Products.findByPk(req.params.id)
     res.render('admin/write.html', {product: product});
 });
 
 router.post('/products/edit/:id', async (req, res) => {
-    await models.products.update(
+    await models.Products.update(
         {
             name: req.body.name,
             price: req.body.price,
@@ -68,7 +68,7 @@ router.post('/products/edit/:id', async (req, res) => {
 });
 
 router.get('/products/delete/:id', async (req, res) => {
-    await models.products.destroy({
+    await models.Products.destroy({
         where: {
             id: req.params.id
         }
