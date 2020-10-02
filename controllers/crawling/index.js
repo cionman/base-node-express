@@ -6,6 +6,13 @@ const cheerio = require('cheerio');
 const { wrapAsync } = require('../../util/func');
 const puppeteer = require('puppeteer');
 
+//입력 할 텍스트
+const insert_name =  "insert_" + Math.random().toString(36).substring(2, 15);
+const insert_description = "insert_" + Math.random().toString(36).substring(2, 15);
+
+//수정 할 텍스트
+const modi_name = "update_" + Math.random().toString(36).substring(2, 15);
+const modi_description = "update_" + Math.random().toString(36).substring(2, 15);
 
 router.get('/cheerio/:invc_no', wrapAsync(async (req, res) => {
     //예제 http://localhost:8001/crawling/cheerio/381572978853
@@ -74,6 +81,30 @@ router.get('/puppeteer/kospi', wrapAsync(async (req, res) => {
     res.send(kospiScore);
     // 브라우저 닫기
     await browser.close();
+}));
+
+
+router.get('/puppeteer/example', wrapAsync(async (req, res) => {
+    // 브라우저 열기
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+
+
+    // 웹사이트 로딩
+    await page.goto('http://localhost:8001/admin/products/write', {timeout: 0, waitUntil: 'domcontentloaded'});
+
+    //selector가 나타날때까지 기다림
+    await page.waitForSelector('.btn-primary');
+    await page.evaluate((a, b) => {
+        document.querySelector('input[name=name]').value = a;
+        document.querySelector('input[name=price]').value = 5000;
+        document.querySelector('input[name=description]').value = b;
+    }, insert_name, insert_description)
+    await page.click('.btn-primary');
+
+    // 브라우저 닫기
+    await browser.close();
+    res.send('puppeteer로 상품 입력 성공')
 }));
 
 
