@@ -4,6 +4,8 @@ const models = require('../../models');
 const request = require('request-promise');
 const cheerio = require('cheerio');
 const { wrapAsync } = require('../../util/func');
+const puppeteer = require('puppeteer');
+
 
 router.get('/cheerio/:invc_no', wrapAsync(async (req, res) => {
     //예제 http://localhost:8001/crawling/cheerio/381572978853
@@ -55,56 +57,25 @@ router.get('/cheerio/:invc_no', wrapAsync(async (req, res) => {
     res.json(result);
 }));
 
-router.post('/products/write', async (req, res) => {
+router.get('/puppeteer/kospi', wrapAsync(async (req, res) => {
 
-    await models.Products.create(req.body);
-    res.redirect('/admin/products');
-
-
-        /*models.Products.create({
-            name: req.body.name,
-            price: req.body.price,
-            description: req.body.description
-        }).then(() => {
-            res.redirect('/admin/products');
-        });*/
-    }
-);
-
-router.get('/products/detail/:id', async (req, res) => {
-    const product = await models.Products.findByPk(req.params.id);
-    res.render('admin/detail.html', {product: product})
-});
-
-router.get('/products/edit/:id', async (req, res) => {
-    //기존에 폼에 value안에 값을 셋팅하기 위해 만든다.
-    const product = await models.Products.findByPk(req.params.id)
-    res.render('admin/write.html', {product: product});
-});
-
-router.post('/products/edit/:id', async (req, res) => {
-    await models.Products.update(
-        {
-            name: req.body.name,
-            price: req.body.price,
-            description: req.body.description
-        },
-        {
-            where: {id: req.params.id}
-        }
-    )
-    res.redirect('/admin/products/detail/' + req.params.id)
-});
-
-router.get('/products/delete/:id', async (req, res) => {
-    await models.Products.destroy({
-        where: {
-            id: req.params.id
-        }
+    // 브라우저 열기
+    const browser = await puppeteer.launch({
+        //headless: false //false인 경우 브라우저가 노출된다.
     });
-    res.redirect('/admin/products');
+    const page = await browser.newPage();
 
-});
+
+    // 웹사이트 로딩
+    await page.goto('https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query=%EC%BD%94%EC%8A%A4%ED%94%BC', {timeout: 0, waitUntil: 'domcontentloaded'});
+
+    // 상단 테이블의 th 제목을 가져오고 싶은경우
+    const kospiScore = await page.$eval('.spt_con strong', strong => strong.textContent.trim() );
+    res.send(kospiScore);
+    // 브라우저 닫기
+    await browser.close();
+}));
+
 
 module.exports = router;
 
