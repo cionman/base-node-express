@@ -20,7 +20,7 @@ router.get('/', testMiddleWare, testMiddleWare2, (req, res) => {
 
 router.get('/products', wrapAsync(async (_, res) => {
     const products = await models.Products.findAll({});
-    res.render('admin/products.html', {products, message: "<h1>hello</h1><script>alert()</script>"});
+    res.render('admin/products.html', {products, message: "<h1>hello</h1>"});
 }));
 
 router.get('/products/write', (_, res) => {

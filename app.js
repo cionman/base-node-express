@@ -75,7 +75,9 @@ class App {
         return compression.filter(req, res)
       }
     })); // gzip 압축 모듈
-    this.app.use(helmet()); //보안 모듈
+    this.app.use(helmet({
+      contentSecurityPolicy: false,
+    })); //보안 모듈
     this.app.use(morgan("dev")); //로깅
     this.app.use(express.static(path.join(__dirname, "static"))); //정적 리소스 설정
     this.app.use(bodyParser.json());
