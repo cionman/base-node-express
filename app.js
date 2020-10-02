@@ -67,6 +67,7 @@ class App {
 
   /* 미들웨어 */
   setMiddleWare() {
+    this.app.set('json spaces', 2);// json 포맷
     this.app.use(compression({ filter: (req, res) => {
         if (req.headers['x-no-compression']) {
           return false
