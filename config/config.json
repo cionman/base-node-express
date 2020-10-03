@@ -16,7 +16,7 @@
   "production": {
     "username": "root",
     "password": null,
-    "database": "base_node",
+    "database": "base_node_test",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }
