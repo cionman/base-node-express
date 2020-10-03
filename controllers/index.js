@@ -8,5 +8,6 @@ function adminRequired(req, res, next) {
 
 router.use('/admin', adminRequired, require('./admin'));
 router.use('/crawling', adminRequired, require('./crawling'));
+router.use('/graphql-example', require('./graphql'));
 
 module.exports = router;

@@ -18,6 +18,9 @@ router.get('/', testMiddleWare, testMiddleWare2, (req, res) => {
     res.send('admin app');
 });
 
+/**
+ * 트랜잭션 예제
+ */
 router.get('/transaction/example', wrapAsync(async (req, res) => {
     await models.sequelize.transaction(async (t) => {
        const product = await models.Products.create({

@@ -10,6 +10,7 @@ const helmet = require("helmet");
 const nunjucks = require("nunjucks");
 const bodyParser = require("body-parser");
 const db = require('./models');
+const { graphqlHTTP } = require('express-graphql');
 
 require("dotenv").config();
 
@@ -96,6 +97,12 @@ class App {
       })
     );
     this.app.use(flash());
+    this.app.use('/graphql', graphqlHTTP({
+      schema: require('./graphql/schema'),
+      rootValue: require('./graphql/rootValue'),
+      graphiql: true, //테스트 할 수 있는 gui가 생성된다.
+    }));
+
   }
 
   setViewEngine() {
