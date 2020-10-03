@@ -1,4 +1,5 @@
-/* 모듈 import */
+'use strict'
+
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
@@ -11,37 +12,34 @@ const nunjucks = require("nunjucks");
 const bodyParser = require("body-parser");
 const db = require('./models');
 const { graphqlHTTP } = require('express-graphql');
-
+const http = require('http')
 require("dotenv").config();
 
-class App {
-  constructor() {
-    this.app = express();
+class ApiServer extends http.Server {
+  constructor(config) {
+    const app = express()
+    super(app)
+    this.config = config
+    this.app = app
+    this.currentConns = new Set()
+    this.busy = new WeakSet()
+    this.stopping = false
+  }
 
+  handleConnection(){
+    this.app.use((req, res, next) => {
+      this.busy.add(req.socket)
+      res.on('finish', () => {
+        if(this.stopping) req.socket.end()
+        this.busy.delete(req.socket)
+      })
+      next()
+    })
 
-    // db 접속
-    this.dbConnection();
-
-    //포트 설정
-    this.setPort();
-
-    // 뷰엔진 셋팅
-    this.setViewEngine();
-
-    // 미들웨어 셋팅
-    this.setMiddleWare();
-
-    // 정적 디렉토리 추가
-    this.setStatic();
-
-    // 로컬 변수
-    this.setLocals();
-
-    // 라우팅
-    this.setRouting();
-
-    // 에러처리
-    this.errorHandler();
+    this.on('connection', c => {
+      this.currentConns.add(c)
+      c.on('close', () => this.currentConns.delete(c))
+    })
   }
 
   setPort() {
@@ -85,16 +83,16 @@ class App {
     this.app.use(bodyParser.urlencoded({ extended: false }));
     this.app.use(cookieParser(process.env.COOKIE_SECRET)); //쿠키
     this.app.use(
-      session({
-        //세션
-        resave: false,
-        saveUninitialized: false,
-        secret: process.env.COOKIE_SECRET,
-        cookie: {
-          httpOnly: true,
-          secure: false,
-        },
-      })
+        session({
+          //세션
+          resave: false,
+          saveUninitialized: false,
+          secret: process.env.COOKIE_SECRET,
+          cookie: {
+            httpOnly: true,
+            secure: false,
+          },
+        })
     );
     this.app.use(flash());
     this.app.use('/graphql', graphqlHTTP({
@@ -126,6 +124,11 @@ class App {
   }
 
   setRouting() {
+    //헬스체크
+    this.app.get('/_health', (req, res) => {
+      res.sendStatus(200)
+    })
+    //컨트롤러
     this.app.use(require("./controllers"));
   }
 
@@ -143,6 +146,73 @@ class App {
       res.status(500).render("common/500.html");
     });
   }
+
+  async start() {
+    console.log(`현재 연결 수는 ${this.currentConns.size}`)
+    // 연결 관리
+    this.handleConnection()
+
+    // db 접속
+    this.dbConnection();
+
+    //포트 설정
+    this.setPort();
+
+    // 뷰엔진 셋팅
+    this.setViewEngine();
+
+    // 미들웨어 셋팅
+    this.setMiddleWare();
+
+    // 정적 디렉토리 추가
+    this.setStatic();
+
+    // 로컬 변수
+    this.setLocals();
+
+    // 라우팅
+    this.setRouting();
+
+    // 에러처리
+    this.errorHandler();
+
+    return this
+  }
+
+
+  shutdown() {
+    console.log('서버 종료를 시작합니다.')
+    if(this.stopping) return
+    this.stopping = true
+    this.close(() => {
+      process.exit(0)
+    })
+
+    setTimeout(() => {
+      console.error('비정상적인 종료(강제종료 합니다)')
+      process.exit(1)
+    }, 30000).unref()
+
+    if(this.currentConns.size > 0) {
+      console.log(`현재 동시접속중인 연결(${this.currentConns.size})을 대기중입니다.`)
+      for(const con of this.currentConns){
+        if(!this.busy.has(con)){
+          console.log('비활성화 커넥션 종료합니다.')
+          con.end()
+        }
+      }
+    }
+  }
+
+
 }
 
-module.exports = new App().app;
+
+const init = async (config = {}) => {
+  const server = new ApiServer(config)
+  return await server.start()
+}
+
+module.exports = {
+  init
+}
