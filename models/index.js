@@ -5,28 +5,22 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
 const cls = require('cls-hooked');
 const namespace = cls.createNamespace('base-node-express');
+require("dotenv").config();
 Sequelize.useCLS(namespace);
 
 const db = {};
-
-let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(config.database, config.username, config.password, {
-    host: config.host,
-    dialect: 'mysql',
-    timezone: '+09:00', //한국 시간 셋팅
-    pool: {
-      max: 5,
-      min: 0,
-      idle: 10000
-    }
-  });
-}
+let sequelize = new Sequelize(process.env.DATABASE, process.env.DB_USER, process.env.DB_PASSWORD, {
+  host: process.env.DB_HOST,
+  dialect: 'mysql',
+  timezone: '+09:00', //한국 시간 셋팅
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000
+  }
+});
 
 fs
   .readdirSync(__dirname)

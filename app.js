@@ -16,10 +16,9 @@ const http = require('http')
 require("dotenv").config();
 
 class ApiServer extends http.Server {
-  constructor(config) {
+  constructor() {
     const app = express()
     super(app)
-    this.config = config
     this.app = app
     this.currentConns = new Set()
     this.busy = new WeakSet()
@@ -191,7 +190,7 @@ class ApiServer extends http.Server {
     setTimeout(() => {
       console.error('비정상적인 종료(강제종료 합니다)')
       process.exit(1)
-    }, 30000).unref()
+    }, process.env.SHUTDOWN_TIME_OUT).unref()
 
     if(this.currentConns.size > 0) {
       console.log(`현재 동시접속중인 연결(${this.currentConns.size})을 대기중입니다.`)
@@ -208,8 +207,8 @@ class ApiServer extends http.Server {
 }
 
 
-const init = async (config = {}) => {
-  const server = new ApiServer(config)
+const init = async () => {
+  const server = new ApiServer()
   return await server.start()
 }
 

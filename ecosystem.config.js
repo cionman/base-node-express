@@ -9,10 +9,13 @@ module.exports = {
             env: {
                 "NODE_ENV": "development", // 개발환경시 적용될 설정 지정
                 "PORT" : 5001,
+                "COOKIE_SECRET" : "base-node-express",
+                "DATABASE" : "base_node_test",
+                "DB_USER" : "root",
+                "DB_PASSWORD" : "",
+                "DB_HOST" : "localhost",
+                "SHUTDOWN_TIME_OUT": 30000
             },
-            env_production: {
-                "NODE_ENV": "production", // 배포환경시 적용될 설정 지정
-            }
         }
     ]
 };
