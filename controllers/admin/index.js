@@ -18,9 +18,28 @@ router.get('/', testMiddleWare, testMiddleWare2, (req, res) => {
     res.send('admin app');
 });
 
-router.get('/transaction/example', (req, res) => {
-
-})
+router.get('/transaction/example', wrapAsync(async (req, res) => {
+    await models.sequelize.transaction(async (t) => {
+       const product = await models.Products.create({
+            name: '트랜잭션 테스트 상품',
+            price: 1000,
+            description: '트랜잭션 테스트 상품 설명'
+        });
+        //throw new Error('롤백될까')
+        await models.Products.update(
+            {
+                name: product.name + ' 수정 업뎃',
+                price: product.price + 50,
+                description: product.description + ' 내용 수정 업데이트'
+            },
+            {
+                where: {id: product.id}
+            }
+        )
+        const result = await models.Products.findByPk(product.id);
+        res.json(result)
+    })
+}));
 
 
 router.get('/products', wrapAsync(async (_, res) => {
