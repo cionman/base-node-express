@@ -5,6 +5,7 @@ const request = require('request-promise');
 const cheerio = require('cheerio');
 const { wrapAsync, wrapPuppeteer } = require('../../util/func');
 const puppeteer = require('puppeteer');
+const fs = require('fs')
 
 //입력 할 텍스트
 const insert_name =  "insert_" + Math.random().toString(36).substring(2, 15);
@@ -92,6 +93,55 @@ router.get('/puppeteer/example', wrapAsync(async (req, res) => {
         }, insert_name, insert_description)
         await page.click('.btn-primary');
         res.send('puppeteer로 상품 입력 성공')
+    })
+}));
+
+router.get('/puppeteer/example', wrapAsync(async (req, res) => {
+
+    await wrapPuppeteer( async (page) => {
+        // 웹사이트 로딩
+        await page.goto('http://localhost:8001/admin/products/write', {timeout: 0, waitUntil: 'domcontentloaded'});
+
+        //selector가 나타날때까지 기다림
+        await page.waitForSelector('.btn-primary');
+        await page.evaluate((a, b) => {
+            document.querySelector('input[name=name]').value = a;
+            document.querySelector('input[name=price]').value = 5000;
+            document.querySelector('input[name=description]').value = b;
+        }, insert_name, insert_description)
+        await page.click('.btn-primary');
+        res.send('puppeteer로 상품 입력 성공')
+    })
+}));
+
+router.get('/puppeteer/screenshot', wrapAsync(async (req, res) => {
+
+    await wrapPuppeteer( async (page) => {
+        // 웹사이트 로딩
+        await page.goto('https://www.naver.com', {timeout: 0, waitUntil: 'domcontentloaded'});
+        await page.screenshot({path: 'screenshot.png', fullPage: true })
+        res.send('네이버 스크린샷')
+    })
+}));
+
+router.get('/puppeteer/html', wrapAsync(async (req, res) => {
+
+    await wrapPuppeteer( async (page) => {
+        // 웹사이트 로딩
+        await page.goto('https://www.naver.com', {timeout: 0, waitUntil: 'networkidle2'});
+        const html = await page.content()
+        fs.writeFileSync("naver.html", html)
+        res.send('네이버 html')
+    })
+}));
+
+router.get('/puppeteer/pdf', wrapAsync(async (req, res) => {
+
+    await wrapPuppeteer( async (page) => {
+        // 웹사이트 로딩
+        await page.goto('https://www.naver.com', {timeout: 0, waitUntil: 'networkidle2'});
+        await page.pdf({path: 'naver.pdf', format:'A4'})
+        res.send('네이버 pdf')
     })
 }));
 
