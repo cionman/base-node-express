@@ -19,6 +19,7 @@
   "homepage": "https://gitlab.com/topspin1278/base-node-express#readme",
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
+    "cls-hooked": "^4.2.2",
     "compression": "^1.7.4",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
@@ -26,13 +27,13 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "helmet": "^4.1.1",
-    "moment": "2.29.0",
+    "moment": "^2.29.0",
     "morgan": "^1.10.0",
     "mysql2": "^2.2.5",
     "nunjucks": "^3.2.0",
     "puppeteer": "^5.3.1",
     "request": "^2.88.2",
-    "request-promise": "4.2.6",
+    "request-promise": "^4.2.6",
     "sequelize": "^6.3.5"
   }
 }

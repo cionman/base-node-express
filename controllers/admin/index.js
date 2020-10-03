@@ -18,6 +18,11 @@ router.get('/', testMiddleWare, testMiddleWare2, (req, res) => {
     res.send('admin app');
 });
 
+router.get('/transaction/example', (req, res) => {
+
+})
+
+
 router.get('/products', wrapAsync(async (_, res) => {
     const products = await models.Products.findAll({});
     res.render('admin/products.html', {products, message: "<h1>hello</h1>"});
