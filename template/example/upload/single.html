@@ -1,0 +1,15 @@
+{% set title = "SINGLE FILE" %}
+{% extends "layout/base.html" %}
+
+{% block content -%}
+<form action="/example/upload/single" method="post" enctype="multipart/form-data">
+    <table class="table table-bordered">
+        <tr>
+            <th>파일</th>
+            <td><input type="file" name="singleFile" class="form-control" value=""/></td>
+        </tr>
+    </table>
+    <button class="btn btn-primary">작성하기</button>
+</form>
+
+{% endblock %}

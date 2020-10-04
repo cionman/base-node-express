@@ -5,7 +5,6 @@ const env = process.env.NODE_ENV
 const port = process.env.PORT
 
 const main = async () => {
-  console.log(`env :: ${env}`)
   const server = await init()
   server.listen(port, () => {
     console.log(`Express 서버 구동 ${port} 포트 리스닝 중 ...`)

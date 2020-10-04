@@ -162,7 +162,6 @@ class ApiServer extends http.Server {
       rootValue: require('./graphql/rootValue'),
       graphiql: true, //테스트 할 수 있는 gui가 생성된다.
     }));
-
   }
 
   setViewEngine() {
