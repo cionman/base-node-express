@@ -25,6 +25,65 @@ class ApiServer extends http.Server {
     this.stopping = false
   }
 
+  async start() {
+    console.log(`현재 연결 수는 ${this.currentConns.size}`)
+    // 연결 관리
+    this.handleConnection()
+
+    // db 접속
+    this.dbConnection();
+
+    //포트 설정
+    this.setPort();
+
+    // 뷰엔진 셋팅
+    this.setViewEngine();
+
+    // 미들웨어 셋팅
+    this.setMiddleWare();
+
+    // 정적 디렉토리 추가
+    this.setStatic();
+
+    // 로컬 변수
+    this.setLocals();
+
+    // 라우팅
+    this.setRouting();
+
+    // 에러처리(가장 아래에 있어야함)
+    this.errorHandler();
+
+    return this
+  }
+
+
+  shutdown() {
+    console.log('서버 종료를 시작합니다.')
+    if(this.stopping) return
+    this.stopping = true
+    this.close(() => {
+      process.exit(0)
+    })
+
+    setTimeout(() => {
+      console.error('비정상적인 종료(강제종료 합니다)')
+      process.exit(1)
+    }, process.env.SHUTDOWN_TIME_OUT).unref()
+
+    if(this.currentConns.size > 0) {
+      console.log(`현재 동시접속중인 연결(${this.currentConns.size})을 대기중입니다.`)
+      for(const con of this.currentConns){
+        if(!this.busy.has(con)){
+          console.log('비활성화 커넥션 종료합니다.')
+          con.end()
+        }
+      }
+    }
+  }
+
+
+
   handleConnection(){
     this.app.use((req, res, next) => {
       this.busy.add(req.socket)
@@ -149,65 +208,6 @@ class ApiServer extends http.Server {
       res.status(500).render("common/500.html");
     });
   }
-
-  async start() {
-    console.log(`현재 연결 수는 ${this.currentConns.size}`)
-    // 연결 관리
-    this.handleConnection()
-
-    // db 접속
-    this.dbConnection();
-
-    //포트 설정
-    this.setPort();
-
-    // 뷰엔진 셋팅
-    this.setViewEngine();
-
-    // 미들웨어 셋팅
-    this.setMiddleWare();
-
-    // 정적 디렉토리 추가
-    this.setStatic();
-
-    // 로컬 변수
-    this.setLocals();
-
-    // 라우팅
-    this.setRouting();
-
-    // 에러처리
-    this.errorHandler();
-
-    return this
-  }
-
-
-  shutdown() {
-    console.log('서버 종료를 시작합니다.')
-    if(this.stopping) return
-    this.stopping = true
-    this.close(() => {
-      process.exit(0)
-    })
-
-    setTimeout(() => {
-      console.error('비정상적인 종료(강제종료 합니다)')
-      process.exit(1)
-    }, process.env.SHUTDOWN_TIME_OUT).unref()
-
-    if(this.currentConns.size > 0) {
-      console.log(`현재 동시접속중인 연결(${this.currentConns.size})을 대기중입니다.`)
-      for(const con of this.currentConns){
-        if(!this.busy.has(con)){
-          console.log('비활성화 커넥션 종료합니다.')
-          con.end()
-        }
-      }
-    }
-  }
-
-
 }
 
 
