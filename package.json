@@ -2,7 +2,7 @@
   "name": "base-node-express",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "start": "npx nodemon server.js -e ejs,js,css,html,jpg,png,scss",
     "test": "echo \"Error: no test specified\" && exit 1"

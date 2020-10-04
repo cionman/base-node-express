@@ -7,7 +7,7 @@ module.exports = {
             script: "./server.js", // pm2로 실행될 파일 경로
             watch: true, // 파일이 변경되면 자동으로 재실행 (true || false)
             env: {
-                "NODE_ENV": "development", // 개발환경시 적용될 설정 지정
+                "NODE_ENV": "production",
                 "PORT" : 5001,
                 "COOKIE_SECRET" : "base-node-express",
                 "DATABASE" : "base_node_test",
