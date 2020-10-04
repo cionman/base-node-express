@@ -5,6 +5,7 @@ npm start
 ```
 
 ## 운영서버 설치
+
 ```
 npm install
 npm install -g pm2
@@ -20,4 +21,10 @@ pm2 set pm2-logrotate:retain 180
 
 ```
 pm2 start ecosystem.config.js
+```
+
+## 로그 위치
+
+```
+cd ~/.pm2/logs
 ```
