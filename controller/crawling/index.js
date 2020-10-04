@@ -1,6 +1,6 @@
 const {Router} = require('express');
 const router = Router();
-const models = require('../../models');
+const models = require('../../model');
 const request = require('request-promise');
 const cheerio = require('cheerio');
 const { wrapAsync, wrapPuppeteer } = require('../../common/util/func');

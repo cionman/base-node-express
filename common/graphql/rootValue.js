@@ -1,4 +1,4 @@
-const models = require('../../models');
+const models = require('../../model');
 /*
 graphi
 GraphQL 예제 소스

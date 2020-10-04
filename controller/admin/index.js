@@ -1,6 +1,6 @@
 const {Router} = require('express');
 const router = Router();
-const models = require('../../models');
+const models = require('../../model');
 const { wrapAsync } = require('../../common/util/func');
 
 function testMiddleWare(req, res, next) {

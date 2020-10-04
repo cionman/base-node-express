@@ -10,7 +10,7 @@ const compression = require('compression');
 const helmet = require("helmet");
 const nunjucks = require("nunjucks");
 const bodyParser = require("body-parser");
-const db = require('./models');
+const db = require('./model');
 const { graphqlHTTP } = require('express-graphql');
 const http = require('http')
 require("dotenv").config();
@@ -189,7 +189,7 @@ class ApiServer extends http.Server {
       res.sendStatus(200)
     })
     //컨트롤러
-    this.app.use(require("./controllers"));
+    this.app.use(require("./controller"));
   }
 
   errorHandler() {
