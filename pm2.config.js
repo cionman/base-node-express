@@ -9,12 +9,6 @@ module.exports = {
             env: {
                 "NODE_ENV": "production",
                 "PORT" : 5001,
-                "COOKIE_SECRET" : "base-node-express",
-                "DATABASE" : "base_node_test",
-                "DB_USER" : "root",
-                "DB_PASSWORD" : "",
-                "DB_HOST" : "localhost",
-                "SHUTDOWN_TIME_OUT": 30000
             },
         }
     ]
