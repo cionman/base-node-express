@@ -5,7 +5,7 @@ const { upload } = require('../../common/util/middleware')
 
 
 router.get('/upload/single', (req, res) => {
-    res.render('example/upload/single.html')
+    res.render('file/upload/single.html')
 });
 
 
