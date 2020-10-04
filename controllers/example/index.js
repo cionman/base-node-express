@@ -1,7 +1,7 @@
 const {Router} = require('express');
 const router = Router();
-const { wrapAsync } = require('../../util/func');
-const { upload } = require('../../util/middleware')
+const { wrapAsync } = require('../../common/util/func');
+const { upload } = require('../../common/util/middleware')
 
 
 router.get('/upload/single', (req, res) => {

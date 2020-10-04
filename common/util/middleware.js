@@ -6,7 +6,7 @@ TODO aws s3 분기 처리 필요
  */
 const storage = multer.diskStorage({
     destination(req, file ,done){
-        done(null, 'static/uploads')
+        done(null, 'view/static/uploads')
     },
     filename(req, file, done){
         const ext = path.extname(file.originalname)

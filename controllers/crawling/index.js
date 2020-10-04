@@ -3,7 +3,7 @@ const router = Router();
 const models = require('../../models');
 const request = require('request-promise');
 const cheerio = require('cheerio');
-const { wrapAsync, wrapPuppeteer } = require('../../util/func');
+const { wrapAsync, wrapPuppeteer } = require('../../common/util/func');
 const puppeteer = require('puppeteer');
 const fs = require('fs')
 

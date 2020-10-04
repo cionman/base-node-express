@@ -140,7 +140,6 @@ class ApiServer extends http.Server {
     }else{
       this.app.use(morgan("dev")); //로깅
     }
-    this.app.use(express.static(path.join(__dirname, "static"))); //정적 리소스 설정
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: false }));
     this.app.use(cookieParser(process.env.COOKIE_SECRET)); //쿠키
@@ -158,21 +157,21 @@ class ApiServer extends http.Server {
     );
     this.app.use(flash());
     this.app.use('/graphql', graphqlHTTP({
-      schema: require('./graphql/schema'),
-      rootValue: require('./graphql/rootValue'),
+      schema: require('./common/graphql/schema'),
+      rootValue: require('./common/graphql/rootValue'),
       graphiql: true, //테스트 할 수 있는 gui가 생성된다.
     }));
   }
 
   setViewEngine() {
-    nunjucks.configure("template", {
+    nunjucks.configure("view/template", {
       autoescape: true,
       express: this.app,
     });
   }
 
   setStatic() {
-    this.app.use("/static", express.static("static"));
+    this.app.use("/static", express.static("view/static"));
   }
 
   setLocals() {

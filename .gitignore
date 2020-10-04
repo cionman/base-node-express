@@ -1,4 +1,4 @@
 node_modules/
 .idea/
 .env
-static/uploads/
+view/static/uploads/
