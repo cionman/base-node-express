@@ -2,11 +2,11 @@
 {% extends "layout/base.html" %}
 
 {% block content -%}
-<form action="/file/upload/single" method="post" enctype="multipart/form-data">
+<form action="/file/upload/multiple" method="post" enctype="multipart/form-data">
     <table class="table table-bordered">
         <tr>
             <th>파일</th>
-            <td><input type="file" name="singleFile" class="form-control" value=""/></td>
+            <td><input type="file" name="multiFile" class="form-control" multiple value=""/></td>
         </tr>
     </table>
     <button class="btn btn-primary">작성하기</button>

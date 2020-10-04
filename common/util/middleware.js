@@ -23,9 +23,7 @@ module.exports = {
                 let ext = path.extname(file.originalname).toLowerCase();
                 //허용되는 확장자
                 if (!(['.jpg', '.jpeg', '.png', '.gif', '.docx', '.doc', '.hwp', '.pdf', '.pptx', '.ppt', '.txt'].includes(ext))) {
-                    console.error('형식에 맞지 않는 파일입니다.')
-                    req.fileValidationError = "Forbidden extension";
-                    return cb(null, false, req.fileValidationError);
+                    return cb(new Error('파일 형식에 맞지 않습니다.'));
                 }
                 cb(null, true);
             }

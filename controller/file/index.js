@@ -9,10 +9,33 @@ router.get('/upload/single', (req, res) => {
 });
 
 
-router.post('/upload/single', upload.single('singleFile'), (req, res) => {
-    console.log('file : ', req.file)
-    console.log('body : ', req.body)
-    res.send('ok')
+router.post('/upload/single', (req, res) => {
+    upload.single('singleFile')(req, res, (err) => {
+        if(err){
+            console.error(`파일 업로드 중 에러 : ${err}`)
+            res.status(500).send(`파일 업로드 중 에러 : ${err}`)
+            return
+        }
+        res.send('ok')
+    })
+
+});
+
+
+router.get('/upload/multiple', (req, res) => {
+    res.render('file/upload/multiple.html')
+});
+
+
+router.post('/upload/multiple', (req, res) => {
+    upload.array('multiFile')(req, res, (err) => {
+        if(err){
+            console.error(`파일 업로드 중 에러 : ${err}`)
+            res.status(500).send(`파일 업로드 중 에러 : ${err}`)
+            return
+        }
+        res.send('ok')
+    })
 });
 
 module.exports = router;
