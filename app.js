@@ -166,6 +166,7 @@ class ApiServer extends http.Server {
   setViewEngine() {
     nunjucks.configure("view/template", {
       autoescape: true,
+      watch:true,
       express: this.app,
     });
   }
