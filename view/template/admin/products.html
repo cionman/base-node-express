@@ -1,29 +1,104 @@
 {% set title = "관리자 리스트" %}
 {% extends "admin/layout/base.html" %}
 
-{% block content -%}
-{{message | safe}}
-<table class="table table-bordered table-hover">
-    <tr>
-        <th>제목</th>
-        <th>작성일</th>
-        <th>삭제</th>
-    </tr>
-    {% for product in products %}
-    <tr>
-        <td>
-            <a href="/admin/products/detail/{{  product.id }}">{{ product.name }}</a>
-        </td>
-        <td>
-            {{ product.dateFormat( product.createdAt ) }}
-        </td>
-        <td>
-            <a href="/admin/products/delete/{{ product.id }}" class="btn btn-danger" onclick="return confirm('삭제하시겠습니까?')">삭제</a>
-        </td>
-    </tr>
-    {% endfor %}
-</table>
+{% block content %}
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">상품 관리</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Dashboard</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<a href="/admin/products/write" class="btn btn-default">작성하기</a>
+    <!-- Main content -->
+    <section class="content">
+        <form id="search-form">
+            <div class="card card-primary">
+                <div class="card-header">
+                </div>
+                <div class="card-body">
+                    <div class="form-group form-inline">
+                        <label style="margin-right: 15px">기간 : </label>
+                        <div class="input-group date">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                            </div>
+                            <input type="text" class="form-control" id="startDate" name="startDate" autocomplete="off">
+                        </div>
+                        <span>~</span>
+                        <div class="input-group date">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                            </div>
+                            <input type="text" class="form-control" id="endDate" name="endDate" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <label style="margin-right: 15px">검색 : </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-search"></i></span>
+                            </div>
+                            <input type="text" class="form-control" id="search" name="search">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center mb-4">
+                <div class="col">
+                    <button id="btnSearch" class="btn btn-primary">검색</button>
+                    <button type="reset" class="btn btn-warning">취소</button>
+                    <div class="float-right">
+                        <button type="button" id="btnAdd" class="btn btn-info">새글 작성</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- /.box -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        {{message | safe}}
+                        <table class="table table-bordered table-hover">
+                            <tr>
+                                <th>제목</th>
+                                <th>작성일</th>
+                                <th>삭제</th>
+                            </tr>
+                            {% for product in products %}
+                            <tr>
+                                <td>
+                                    <a href="/admin/products/detail/{{  product.id }}">{{ product.name }}</a>
+                                </td>
+                                <td>
+                                    {{ product.dateFormat( product.createdAt ) }}
+                                </td>
+                                <td>
+                                    <a href="/admin/products/delete/{{ product.id }}" class="btn btn-danger" onclick="return confirm('삭제하시겠습니까?')">삭제</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+
+                        <a href="/admin/products/write" class="btn btn-default">작성하기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
 
 {% endblock %}
