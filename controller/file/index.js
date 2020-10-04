@@ -38,6 +38,22 @@ router.post('/upload/multiple', (req, res) => {
     })
 });
 
+router.get('/upload/multiple2', (req, res) => {
+    res.render('file/upload/multiple2.html')
+});
+
+
+router.post('/upload/multiple2', (req, res) => {
+    upload.fields([{name : "singleFile1"}, {name : "singleFile2"}])(req, res, (err) => {
+        if(err){
+            console.error(`파일 업로드 중 에러 : ${err}`)
+            res.status(500).send(`파일 업로드 중 에러 : ${err}`)
+            return
+        }
+        res.send('ok')
+    })
+});
+
 module.exports = router;
 
 
