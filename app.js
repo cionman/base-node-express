@@ -76,7 +76,11 @@ class ApiServer extends http.Server {
     this.app.use(helmet({
       contentSecurityPolicy: false,
     })); //보안 모듈
-    this.app.use(morgan("dev")); //로깅
+    if(process.env.NODE_ENV === 'production'){
+      this.app.use(morgan("combined")); //로깅
+    }else{
+      this.app.use(morgan("dev")); //로깅
+    }
     this.app.use(express.static(path.join(__dirname, "static"))); //정적 리소스 설정
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: false }));
