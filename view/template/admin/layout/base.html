@@ -15,16 +15,9 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
                     <ul class="nav navbar-nav">
 
-                        {% from "macro/link.html" import link %}
+                        {% from "admin/macro/link.html" import link %}
                         {{ link( '/admin/products' , "List" , req_path ) }}
                         {{ link( '/admin/products/write' , "Write" , req_path ) }}
-
-
-                        <!-- <li class="active">
-                            <a href="/admin/products">List</a>
-                        </li>
-                        <li><a href="/admin/products/write">Write</a></li>
-                        -->
                     </ul>
                 </div>
             </div>

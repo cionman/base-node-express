@@ -196,7 +196,7 @@ class ApiServer extends http.Server {
   errorHandler() {
     /* 에러 핸들러: 라우팅 설정 아래에 있어야 한다. 그래야 404 처리 가능*/
     this.app.use((req, res, _) => {
-      res.status(404).render("common/404.html");
+      res.status(404).render("error/404.html");
     });
 
     this.app.use((err, req, res, _) => {
@@ -204,7 +204,7 @@ class ApiServer extends http.Server {
       res.locals.message = err.message;
       res.locals.error = req.app.get("env") === "development" ? err : {};
       res.locals.status = err.status || 500;
-      res.status(500).render("common/500.html");
+      res.status(500).render("error/500.html");
     });
   }
 }
