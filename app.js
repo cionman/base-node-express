@@ -14,6 +14,8 @@ const bodyParser = require("body-parser");
 const db = require('./model');
 const { graphqlHTTP } = require('express-graphql');
 const http = require('http')
+const csrf = require('csurf')
+
 require("dotenv").config();
 
 class ApiServer extends http.Server {
@@ -170,6 +172,8 @@ class ApiServer extends http.Server {
       rootValue: require('./common/graphql/rootValue'),
       graphiql: true, //테스트 할 수 있는 gui가 생성된다.
     }));
+
+    this.app.use(csrf({ cookie: true }))
   }
 
   setViewEngine() {
@@ -187,6 +191,7 @@ class ApiServer extends http.Server {
   setLocals() {
     // 템플릿에 사용할 전역 변수
     this.app.use((req, res, next) => {
+      this.app.locals.csrfToken = req.csrfToken()
       this.app.locals.isLogin = true; //TODO 로그인 여부 작업 필요
       this.app.locals.req_path = req.path;
       next();
