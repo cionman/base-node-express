@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 const path = require("path");
 const session = require("express-session");
+const MySQLStore = require('express-mysql-session')(session);
 const flash = require("connect-flash");
 const compression = require('compression');
 const helmet = require("helmet");
@@ -153,6 +154,14 @@ class ApiServer extends http.Server {
             httpOnly: true,
             secure: false,
           },
+          store: new MySQLStore({
+            host: process.env.DB_HOST,
+            port: 3306,
+            user: process.env.DB_USER,
+            password: process.env.DB_PASSWORD,
+            database: process.env.DATABASE,
+            expiration: 8 * 60 * 60 * 1000
+          }),
         })
     );
     this.app.use(flash());
