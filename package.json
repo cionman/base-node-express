@@ -18,6 +18,7 @@
   },
   "homepage": "https://gitlab.com/topspin1278/base-node-express#readme",
   "dependencies": {
+    "bcrypt": "5.0.0",
     "cheerio": "^1.0.0-rc.3",
     "cls-hooked": "^4.2.2",
     "compression": "^1.7.4",
