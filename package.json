@@ -40,6 +40,23 @@
     "puppeteer": "^5.3.1",
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "@babel/core": "^7.10.1",
+    "@babel/preset-env": "^7.10.1",
+    "@babel/polyfill": "^7.10.1",
+    "@rollup/stream": "^1.0.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
+    "rollup": "^2.15.0",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0",
+    "bootstrap": "^4.4.1"
   }
 }

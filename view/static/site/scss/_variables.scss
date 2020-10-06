@@ -1,0 +1,46 @@
+$gray-base:              #000 !default;
+$gray-darker:            lighten($gray-base, 13.5%) !default; // #222
+$gray-dark:              lighten($gray-base, 20%) !default;   // #333
+$gray:                   lighten($gray-base, 33.5%) !default; // #555
+$gray-light:             lighten($gray-base, 46.7%) !default; // #777
+$gray-lighter:           lighten($gray-base, 93.5%) !default; // #eee
+$black:                     #000;
+$ultra-light:               #f1f4f6;
+$gray-lighten:              #d0d8df;
+
+
+$vanilla-light:             #f0eeea;
+$vanilla-lighter:           #f7f4ed;
+$vanilla-light-hover:       #ebe6df;
+
+// var
+$width: 1168px;
+$width-sm: 576px;
+$width-md: 768px;
+$width-lg: 992px;
+$width-xl: 1200px;
+
+// font
+$notosanskr: "Noto Sans KR", "맑은 고딕", "Malgun Gothic", "Apple Gothic",
+Helvetica, Arial, sans-serif;
+$roboto: "Roboto", "맑은 고딕", "Malgun Gothic", "Apple Gothic", Helvetica,
+Arial, sans-serif;
+
+// media
+$media-sm: "(min-width: #{$width-sm})";
+$media-md: "(min-width: #{$width-md})";
+$media-lg: "(min-width: #{$width-lg})";
+$media-xl: "(min-width: #{$width-xl})";
+
+// color
+$co_white: #fff;
+$co_black: #000;
+$co_default: #333;
+$co_disabled: #999;
+
+$font-size-h1: 36px;
+$font-size-h2: 32px;
+$font-size-h3: 24px;
+$font-size-h4: 21px;
+$font-size-h5: 18px;
+$font-size-h6: 14px;

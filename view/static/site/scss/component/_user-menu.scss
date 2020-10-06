@@ -1,0 +1,67 @@
+.nav-top{
+  padding:20px 20px;
+
+  .user-menu {
+    height: 30px;
+    text-align: right;
+
+    li {
+      position: relative;
+      display: inline-block;
+      padding-left: 16px;
+
+      &:first-child {
+        &:before {
+          display: none;
+        }
+      }
+
+      &:before {
+        display: block;
+        content: " ";
+        width: 1px;
+        height: 17px;
+        background-color: $gray-light;
+        position: absolute;
+        left: 8px;
+        top: 4px;
+      }
+
+      a {
+        color: $gray-dark;
+        font-size: 15px;
+      }
+    }
+
+    &__link {
+      position: relative;
+    }
+
+    &__profile-img {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: -5px;
+    }
+
+    &__nick {
+      padding-left: 34px;
+    }
+
+    &__item {
+      &--login {
+        padding-left: 12px !important;
+
+        &:before {
+          display: none !important;
+        }
+      }
+    }
+  }
+
+}
