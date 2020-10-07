@@ -36,6 +36,18 @@ pm2 set pm2-logrotate:retain 180
 pm2 start pm2.config.js
 ```
 
+## 운영체제 서비스 등록하기
+
+- `pm2 startup` 명령어 후 아래 `sudo..` 로 시작하는 명령어 결과를 시스템에 붙여넣기
+```
+pm2 startup
+
+[PM2] Init System found: launchd
+[PM2] To setup the Startup Script, copy/paste the following command:
+sudo env PATH=$PATH:/Users/aaa/.nvm/versions/node/v12.13.0/bin /Users/aaa/.nvm/versions/node/v12.13.0/lib/node_modules/pm2/bin/pm2 startup launchd -u mac --hp /Users/aaa
+
+```
+
 ## 로그 위치
 
 ```
