@@ -1,0 +1,29 @@
+/* jshint indent: 2 */
+
+const Sequelize = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  return SharingHobbyType.init(sequelize, DataTypes);
+}
+
+class SharingHobbyType extends Sequelize.Model {
+  static init(sequelize, DataTypes) {
+  super.init({
+    sharingHobbyTypeId: {
+      autoIncrement: true,
+      type: DataTypes.INTEGER(11),
+      allowNull: false,
+      primaryKey: true,
+      field: 'SHARING_HOBBY_TYPE_ID'
+    },
+    typeName: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+      field: 'TYPE_NAME'
+    }
+  }, {
+    sequelize,
+    tableName: 'TB_SHARING_HOBBY_TYPE'
+    });
+  return SharingHobbyType;
+  }
+}

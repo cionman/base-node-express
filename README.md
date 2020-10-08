@@ -53,3 +53,13 @@ sudo env PATH=$PATH:/Users/aaa/.nvm/versions/node/v12.13.0/bin /Users/aaa/.nvm/v
 ```
 cd ~/.pm2/logs
 ```
+
+## 기존 데이터베이스에서 모델 import
+
+```
+npm install -g sequelize-auto
+npm install -g mysql2
+
+sequelize-auto -o "./model" --cm p --cp c --cf p  -d base -h localhost -u root -p 3306 -e mysql -l es6
+```
+
