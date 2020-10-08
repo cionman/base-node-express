@@ -13,8 +13,18 @@
 npm start
 ```
 
+- 프론트 빌드 
+
 ```
 gulp watch
+```
+
+## 개발서버 데이터 초기화
+
+- NODE_ENV=development 일 때만 동작한다.
+
+```
+node data_refresh.js
 ```
 
 ## 운영서버 설치
