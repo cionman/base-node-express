@@ -1,9 +1,10 @@
 ## 디렉토리 구조
 - controller : 컨트롤러
-- model : 모델
+- model : SQL 모델
+- schema : mongodb 스키마
 - view : template 및 정적파일
 - common : 공통 사용디렉토리
-- 위 4개 디렉토리 이상 늘리지 않는 방향으로 작업
+- 위 5개 디렉토리 이상 늘리지 않는 방향으로 작업
 
 ## 개발 서버 실행
 
@@ -87,5 +88,6 @@ sequelize-auto -o "./model" --cm p --cp c --cf p  -d base -h localhost -u root -
 - [express-bouncer](https://www.npmjs.com/package/express-bouncer) : 로그인 무차별 대입 공격 방어용
 - [express-brute](https://www.npmjs.com/package/express-brute) : 로그인 무차별 대입 공격 방어용
 - [hpp](https://www.npmjs.com/package/hpp) : 로그인 무차별 대입 공격 방어용
-- 
-  
+
+
+# 임시 메모

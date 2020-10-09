@@ -15,6 +15,7 @@ const db = require('./model');
 const { graphqlHTTP } = require('express-graphql');
 const http = require('http')
 const csrf = require('csurf')
+const mongoConnect = require('./schema');
 
 require("dotenv").config();
 
@@ -108,6 +109,9 @@ class ApiServer extends http.Server {
   }
 
   dbConnection(){
+    //mongodb connect
+    mongoConnect()
+
     // DB authentication
     db.sequelize.authenticate()
         .then(() => {
