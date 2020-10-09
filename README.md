@@ -73,3 +73,19 @@ npm install -g mysql2
 sequelize-auto -o "./model" --cm p --cp c --cf p  -d base -h localhost -u root -p 3306 -e mysql -l es6
 ```
 
+## 보안 관련 유용한 article
+
+- [https://cheatsheetseries.owasp.org/cheatsheets/Nodejs_Security_Cheat_Sheet.html](https://cheatsheetseries.owasp.org/cheatsheets/Nodejs_Security_Cheat_Sheet.html)
+
+## 도입 검토 모듈
+
+- [express-permission](https://www.npmjs.com/package/express-permission) : 권한 관리 
+- [acl](https://www.npmjs.com/package/acl) : 권한 관리 
+- [express-ipfilter](https://www.npmjs.com/package/express-ipfilter) : IP 필터 관리자 페이지용
+- [express-validator](https://express-validator.github.io/docs/) : form-validation  
+- [toobusy-js](https://www.npmjs.com/package/toobusy-js) : Dos 공격 방어용
+- [express-bouncer](https://www.npmjs.com/package/express-bouncer) : 로그인 무차별 대입 공격 방어용
+- [express-brute](https://www.npmjs.com/package/express-brute) : 로그인 무차별 대입 공격 방어용
+- [hpp](https://www.npmjs.com/package/hpp) : 로그인 무차별 대입 공격 방어용
+- 
+  
