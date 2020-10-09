@@ -114,6 +114,7 @@ class ApiServer extends http.Server {
           console.log('Connection has been established successfully.');
           //테이블 동기화
           // This will run .sync() only if database name ends with '_test'
+
           //return db.sequelize.sync({ alter: true, match: /_test$/ });
         })
         .then(() => {
