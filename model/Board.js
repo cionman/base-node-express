@@ -151,4 +151,12 @@ class Board extends Sequelize.Model {
     });
   return Board;
   }
+
+  static associate(models) {
+    models.Board.belongsTo(models.User, {
+      foreignKey: {
+        name: 'regId'
+      }
+    })
+  }
 }

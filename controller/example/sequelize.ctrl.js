@@ -3,8 +3,8 @@
 const {Router} = require('express');
 const router = Router();
 const models = require('../../model');
-const { wrapAsync } = require('../../common/util/func');
-
+const { tree, wrapAsync } = require('../../common/util/func');
+const { Op } = require("sequelize");
 function testMiddleWare(req, res, next) {
     console.log('첫번째 미들웨어');
     next();
@@ -106,6 +106,149 @@ router.get('/products/delete/:id', wrapAsync(async (req, res) => {
     res.redirect('/example/sequelize/products');
 
 }));
+
+router.get('/pk/:id', wrapAsync(async (req, res) => {
+    const user = await models.User.findByPk(req.params.id)
+    res.json(user);
+
+}));
+
+router.get('/findone/:id', wrapAsync(async (req, res) => {
+    const user = await models.User.findOne({
+        attributes: ["userId", "userName", "address1"],
+        where: {
+            userId: {[Op.eq]: req.params.id}
+        },
+    })
+    res.json(user);
+
+}));
+
+router.get('/all', wrapAsync(async (req, res) => {
+    const users = await models.User.findAll()
+    res.json(users);
+
+}));
+
+router.get('/select-column', wrapAsync(async (req, res) => {
+    const users = await models.User.findAll({
+        attributes: ["userId", "address1"]
+    })
+    res.json(users);
+
+}));
+
+router.get('/where1', wrapAsync(async (req, res) => {
+    const users = await models.User.findAll({
+        attributes: ["userId", "userName", "address1"],
+        where : {
+            userId: { [Op.gt] : 10 }
+        },
+    })
+    res.json(users);
+
+}));
+
+
+router.get('/limitoffset', wrapAsync(async (req, res) => {
+    const users = await models.User.findAll({
+        attributes: ["userId", "userName", "address1"],
+        where : {
+            userId: { [Op.gt] : 10 }
+        },
+        order:[['address1', 'asc'], ['userId', 'desc']],
+        limit : 5,
+        offset : 1
+
+    })
+    res.json(users);
+
+}));
+
+router.get('/innerjoin', wrapAsync(async (req, res) => {
+    const boards = await models.Board.findAll({
+        attributes: ["boardId", "title"],
+        include: [
+            {
+                model: models.User,
+                attributes: ["userId", "userName"],
+                required:true //true면 innerjoin, 없거나 false면  left outerjoin
+            }
+        ]
+    })
+    res.json(boards);
+
+}));
+
+router.get('/leftjoin', wrapAsync(async (req, res) => {
+    const boards = await models.Board.findAll({
+        attributes: ["boardId", "title"],
+        include: [
+            {
+                model: models.User,
+                attributes: ["userId", "userName"],
+                required:false, //true면 innerjoin false면  left outerjoin
+            }
+        ]
+    })
+    res.json(boards);
+
+}));
+
+router.get('/rightjoin', wrapAsync(async (req, res) => {
+    const boards = await models.Board.findAll({
+        attributes: ["boardId", "title"],
+        include: [
+            {
+                model: models.User,
+                attributes: ["userId", "userName"],
+                required:false, //true면 innerjoin false면  left outerjoin
+                right: true, //right join
+            }
+        ]
+    })
+    res.json(boards);
+
+}));
+
+router.get('/subquery1', wrapAsync(async (req, res) => {
+    const boards = await models.Board.findAll({
+        attributes: ["boardId", "title", [
+            models.sequelize.literal(`(SELECT COUNT(1) FROM TB_USER)`),
+            'userCnt'
+        ]],
+        order: [
+            [models.sequelize.literal('userCnt'), 'DESC']
+        ]
+    })
+    res.json(boards);
+
+}));
+
+router.get('/subquery2', wrapAsync(async (req, res) => {
+    const boards = await models.Board.findAll({
+        attributes: ["boardId", "title"],
+        where: {
+            regId : { [Op.eq] : models.sequelize.literal(`(SELECT U.USER_ID FROM TB_USER AS U WHERE U.USER_ID = 12)`)}
+        }
+    })
+    res.json(boards);
+
+}));
+
+
+router.get('/function', wrapAsync(async (req, res) => {
+    const boards = await models.Board.findAll({
+        attributes: ["boardId", [models.sequelize.fn('COUNT', models.sequelize.col('REG_ID')), 'userCnt']],
+        group:["boardId"]
+    })
+    res.json(boards);
+
+}));
+
+
+
+
 
 module.exports = router;
 
