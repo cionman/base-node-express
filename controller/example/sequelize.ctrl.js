@@ -246,6 +246,34 @@ router.get('/function', wrapAsync(async (req, res) => {
 
 }));
 
+router.get('/insert', wrapAsync(async (req, res) => {
+    const boards = await models.Board.create({
+        title : 'nodejs로 입력한 제목',
+        content: 'nodejs로 입력한 내용'
+    })
+    res.json(boards);
+}));
+
+
+router.get('/update', wrapAsync(async (req, res) => {
+    const boards = await models.Board.update({
+        title : 'nodejs로 수정한 제목',
+        content: 'nodejs로 수정한 내용'
+    }, {
+        //where: {boardId: {[Op.eq] : 1}}
+        //where: {boardId: 1}
+        where: {boardId: {[Op.in] : [1, 2, 5]}}
+    })
+    res.json(boards);
+}));
+
+router.get('/delete', wrapAsync(async (req, res) => {
+    const boards = await models.Board.destroy({
+        where: {boardId: 30}
+    })
+    res.json(boards);
+}));
+
 
 
 
