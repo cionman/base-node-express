@@ -2,7 +2,8 @@
 {% extends "site/layout/base.html" %}
 
 {% block content -%}
-<form action="/file/upload/multiple" method="post" enctype="multipart/form-data">
+<form action="?_csrf={{csrfToken}}" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="_csrf" value="{{csrfToken}}">
     <table class="table table-bordered">
         <tr>
             <th>파일</th>

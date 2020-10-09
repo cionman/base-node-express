@@ -1,3 +1,5 @@
+'use strict'
+
 const {Router} = require('express');
 const router = Router();
 const models = require('../../model');
@@ -82,25 +84,7 @@ router.get('/puppeteer/example', wrapAsync(async (req, res) => {
 
     await wrapPuppeteer( async (page) => {
         // 웹사이트 로딩
-        await page.goto('http://localhost:8001/admin/products/write', {timeout: 0, waitUntil: 'domcontentloaded'});
-
-        //selector가 나타날때까지 기다림
-        await page.waitForSelector('.btn-primary');
-        await page.evaluate((a, b) => {
-            document.querySelector('input[name=name]').value = a;
-            document.querySelector('input[name=price]').value = 5000;
-            document.querySelector('input[name=description]').value = b;
-        }, insert_name, insert_description)
-        await page.click('.btn-primary');
-        res.send('puppeteer로 상품 입력 성공')
-    })
-}));
-
-router.get('/puppeteer/example', wrapAsync(async (req, res) => {
-
-    await wrapPuppeteer( async (page) => {
-        // 웹사이트 로딩
-        await page.goto('http://localhost:8001/admin/products/write', {timeout: 0, waitUntil: 'domcontentloaded'});
+        await page.goto('http://localhost:8001/example/sequelize/products/write', {timeout: 0, waitUntil: 'domcontentloaded'});
 
         //selector가 나타날때까지 기다림
         await page.waitForSelector('.btn-primary');

@@ -1,3 +1,5 @@
+'use strict'
+
 const {Router} = require('express');
 const router = Router();
 const { wrapAsync } = require('../../common/util/func');
@@ -5,7 +7,7 @@ const { upload } = require('../../common/util/middleware')
 
 
 router.get('/upload/single', (req, res) => {
-    res.render('site/file/upload/single.html')
+    res.render('site/example/file/upload/single.html')
 });
 
 
@@ -23,7 +25,7 @@ router.post('/upload/single', (req, res) => {
 
 
 router.get('/upload/multiple', (req, res) => {
-    res.render('site/file/upload/multiple.html')
+    res.render('site/example/file/upload/multiple.html')
 });
 
 
@@ -39,7 +41,7 @@ router.post('/upload/multiple', (req, res) => {
 });
 
 router.get('/upload/multiple2', (req, res) => {
-    res.render('site/file/upload/multiple2.html')
+    res.render('site/example/file/upload/multiple2.html')
 });
 
 

@@ -1,5 +1,5 @@
 {% set title = "제품 등록" %}
-{% extends "admin/layout/base.html" %}
+{% extends "site/layout/base.html" %}
 
 {% block content -%}
 <div class="content-wrapper">
@@ -27,6 +27,7 @@
                     <div class="card-body">
 
                         <form action="" method="post">
+                            <input type="hidden" name="_csrf" value="{{csrfToken}}">
                             <table class="table table-bordered">
                                 <tr>
                                     <th>제품명</th>

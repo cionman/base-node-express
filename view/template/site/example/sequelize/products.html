@@ -1,0 +1,37 @@
+{% set title = "관리자 리스트" %}
+{% extends "site/layout/base.html" %}
+
+{% block content %}
+<!-- /.box -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                {{message | safe}}
+                <table class="table table-bordered table-hover">
+                    <tr>
+                        <th>제목</th>
+                        <th>작성일</th>
+                        <th>삭제</th>
+                    </tr>
+                    {% for product in products %}
+                    <tr>
+                        <td>
+                            <a href="/example/sequelize/products/detail/{{  product.id }}">{{ product.name }}</a>
+                        </td>
+                        <td>
+                            {{ product.dateFormat( product.createdAt ) }}
+                        </td>
+                        <td>
+                            <a href="/example/sequelize/products/delete/{{ product.id }}" class="btn btn-danger" onclick="return confirm('삭제하시겠습니까?')">삭제</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <a href="/example/sequelize/products/write" class="btn btn-primary">작성하기</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,5 +1,5 @@
 {% set title = "관리자 : 상세페이지" %}
-{% extends "admin/layout/base.html" %}
+{% extends "site/layout/base.html" %}
 
 {% block content -%}
 <div class="content-wrapper">
@@ -40,8 +40,8 @@
                             </div>
                         </div>
 
-                        <a href="/admin/products" class="btn btn-default">목록으로</a>
-                        <a href="/admin/products/edit/{{ product.id }}" class="btn btn-primary">수정</a>
+                        <a href="/example/sequelize/products" class="btn btn-default">목록으로</a>
+                        <a href="/example/sequelize/products/edit/{{ product.id }}" class="btn btn-primary">수정</a>
                     </div>
                 </div>
             </div>
