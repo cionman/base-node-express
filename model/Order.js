@@ -1,4 +1,4 @@
-/* jshint indent: 2 */
+'use strict';
 
 const Sequelize = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
