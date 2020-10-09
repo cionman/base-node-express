@@ -1,6 +1,7 @@
 'use strict'
 
 const Sequelize = require('sequelize');
+const { encryptAES256, decryptAES256 } = require('../common/util/crypto.util')
 module.exports = (sequelize, DataTypes) => {
   return User.init(sequelize, DataTypes);
 }
@@ -23,12 +24,26 @@ class User extends Sequelize.Model {
     address2: {
       type: DataTypes.STRING(400),
       allowNull: true,
-      field: 'ADDRESS2'
+      field: 'ADDRESS2',
+      set(value) {
+        this.setDataValue('address2', encryptAES256(value));
+      },
+      get() {
+        const rawValue = this.getDataValue('address2');
+        return rawValue ? decryptAES256(rawValue) : '';
+      }
     },
     birthday: {
       type: DataTypes.STRING(40),
       allowNull: true,
-      field: 'BIRTHDAY'
+      field: 'BIRTHDAY',
+      set(value) {
+        this.setDataValue('birthday', encryptAES256(value));
+      },
+      get() {
+        const rawValue = this.getDataValue('birthday');
+        return rawValue ? decryptAES256(rawValue) : '';
+      }
     },
     regDt: {
       type: DataTypes.DATE,
@@ -44,7 +59,14 @@ class User extends Sequelize.Model {
       type: DataTypes.STRING(300),
       allowNull: true,
       unique: "UQ_USER__EMAIL",
-      field: 'EMAIL'
+      field: 'EMAIL',
+      set(value) {
+        this.setDataValue('email', encryptAES256(value));
+      },
+      get() {
+        const rawValue = this.getDataValue('email');
+        return rawValue ? decryptAES256(rawValue) : '';
+      }
     },
     facebookCode: {
       type: DataTypes.STRING(100),
@@ -94,7 +116,14 @@ class User extends Sequelize.Model {
     userName: {
       type: DataTypes.STRING(100),
       allowNull: true,
-      field: 'USER_NAME'
+      field: 'USER_NAME',
+      set(value) {
+        this.setDataValue('userName', encryptAES256(value));
+      },
+      get() {
+        const rawValue = this.getDataValue('userName');
+        return rawValue ? decryptAES256(rawValue) : '';
+      }
     },
     naverCode: {
       type: DataTypes.STRING(100),
@@ -126,7 +155,14 @@ class User extends Sequelize.Model {
     phone: {
       type: DataTypes.STRING(100),
       allowNull: true,
-      field: 'PHONE'
+      field: 'PHONE',
+      set(value) {
+        this.setDataValue('phone', encryptAES256(value));
+      },
+      get() {
+        const rawValue = this.getDataValue('phone');
+        return rawValue ? decryptAES256(rawValue) : '';
+      }
     },
     postCode: {
       type: DataTypes.STRING(12),
