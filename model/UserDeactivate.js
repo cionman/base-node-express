@@ -29,12 +29,12 @@ class UserDeactivate extends Sequelize.Model {
       allowNull: true,
       field: 'BIRTHDAY'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
     },
-    regIp: {
+    createdIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'REG_IP'
@@ -79,7 +79,7 @@ class UserDeactivate extends Sequelize.Model {
       allowNull: true,
       field: 'LOGIN_ID'
     },
-    chgDt: {
+    modifiedDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'CHG_DT'
@@ -104,7 +104,7 @@ class UserDeactivate extends Sequelize.Model {
       allowNull: true,
       field: 'PASSWD'
     },
-    passwdChgDt: {
+    passwdmodifiedDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'PASSWD_CHG_DT'
@@ -146,6 +146,7 @@ class UserDeactivate extends Sequelize.Model {
     }
   }, {
     sequelize,
+    timestamps: false,
     tableName: 'TB_USER_DEACTIVATE'
     });
   return UserDeactivate;

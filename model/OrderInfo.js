@@ -35,12 +35,12 @@ class OrderInfo extends Sequelize.Model {
       allowNull: true,
       field: 'CANCEL_INFO'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
     },
-    regIp: {
+    createdIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'REG_IP'
@@ -80,7 +80,7 @@ class OrderInfo extends Sequelize.Model {
       allowNull: true,
       field: 'PAY_INFO'
     },
-    regId: {
+    createdBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -92,6 +92,7 @@ class OrderInfo extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt:"createdDate",
     tableName: 'TB_ORDER_INFO'
     });
   return OrderInfo;

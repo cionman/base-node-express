@@ -28,18 +28,19 @@ class EventLike extends Sequelize.Model {
       },
       field: 'USER_ID'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
     },
-    regIp: {
+    createdIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'REG_IP'
     }
   }, {
     sequelize,
+    createdAt:"createdDate",
     tableName: 'TB_EVENT_LIKE'
     });
   return EventLike;

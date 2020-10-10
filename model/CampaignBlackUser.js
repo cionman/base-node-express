@@ -15,22 +15,22 @@ class CampaignBlackUser extends Sequelize.Model {
       primaryKey: true,
       field: 'CAMPAIGN_BLACK_USER_ID'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
     },
-    regIp: {
+    createdIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'REG_IP'
     },
-    chgDt: {
+    modifiedDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'CHG_DT'
     },
-    chgIp: {
+    modifiedIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'CHG_IP'
@@ -50,7 +50,7 @@ class CampaignBlackUser extends Sequelize.Model {
       unique: "FK_CAMPAIGN_BLACK_TO_CAMPAIGN",
       field: 'CAMPAIGN_ID'
     },
-    regId: {
+    createdBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -60,7 +60,7 @@ class CampaignBlackUser extends Sequelize.Model {
       unique: "FK_CAMPAIGN_BLACK_TO_USER1",
       field: 'REG_ID'
     },
-    chgId: {
+    modifiedBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -82,6 +82,8 @@ class CampaignBlackUser extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt:"createdDate",
+    updatedAt:"updatedDate",
     tableName: 'TB_CAMPAIGN_BLACK_USER'
     });
   return CampaignBlackUser;

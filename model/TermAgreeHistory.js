@@ -20,12 +20,12 @@ class TermAgreeHistory extends Sequelize.Model {
       allowNull: true,
       field: 'AGREE'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
     },
-    regIp: {
+    createdIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'REG_IP'
@@ -52,6 +52,7 @@ class TermAgreeHistory extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt:"createdDate",
     tableName: 'TB_TERM_AGREE_HISTORY'
     });
   return TermAgreeHistory;

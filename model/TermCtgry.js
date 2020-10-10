@@ -15,12 +15,12 @@ class TermCtgry extends Sequelize.Model {
       primaryKey: true,
       field: 'TERM_CTGRY_ID'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
     },
-    regIp: {
+    createdIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'REG_IP'
@@ -30,12 +30,12 @@ class TermCtgry extends Sequelize.Model {
       allowNull: true,
       field: 'DISPLAY_METHOD'
     },
-    chgDt: {
+    modifiedDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'CHG_DT'
     },
-    chgIp: {
+    modifiedIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'CHG_IP'
@@ -65,7 +65,7 @@ class TermCtgry extends Sequelize.Model {
       allowNull: true,
       field: 'USER_REQUIRED_YN'
     },
-    regId: {
+    createdBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -75,7 +75,7 @@ class TermCtgry extends Sequelize.Model {
       unique: "FK_TERM_CTGRY_TO_USER1",
       field: 'REG_ID'
     },
-    chgId: {
+    modifiedBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -87,6 +87,8 @@ class TermCtgry extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt:"createdDate",
+    updatedAt:"updatedDate",
     tableName: 'TB_TERM_CTGRY'
     });
   return TermCtgry;

@@ -20,12 +20,12 @@ class EventPartComment extends Sequelize.Model {
       allowNull: true,
       field: 'COMMENT_CONTENT'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
     },
-    regIp: {
+    createdIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'REG_IP'
@@ -40,12 +40,12 @@ class EventPartComment extends Sequelize.Model {
       allowNull: true,
       field: 'MENU_UID'
     },
-    chgDt: {
+    modifiedDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'CHG_DT'
     },
-    chgIp: {
+    modifiedIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'CHG_IP'
@@ -55,7 +55,7 @@ class EventPartComment extends Sequelize.Model {
       allowNull: true,
       field: 'STATUS'
     },
-    regId: {
+    createdBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -65,7 +65,7 @@ class EventPartComment extends Sequelize.Model {
       unique: "FK_EVENT_PART_COMMENT_TO_USER1",
       field: 'REG_ID'
     },
-    chgId: {
+    modifiedBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -87,6 +87,8 @@ class EventPartComment extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt:"createdDate",
+    updatedAt:"updatedDate",
     tableName: 'TB_EVENT_PART_COMMENT'
     });
   return EventPartComment;

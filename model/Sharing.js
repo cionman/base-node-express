@@ -20,12 +20,12 @@ class Sharing extends Sequelize.Model {
       allowNull: true,
       field: 'CONTENT'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
     },
-    regIp: {
+    createdIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'REG_IP'
@@ -45,12 +45,12 @@ class Sharing extends Sequelize.Model {
       allowNull: true,
       field: 'MENU_UID'
     },
-    chgDt: {
+    modifiedDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'CHG_DT'
     },
-    chgIp: {
+    modifiedIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'CHG_IP'
@@ -100,7 +100,7 @@ class Sharing extends Sequelize.Model {
       allowNull: true,
       field: 'VIEW_CNT'
     },
-    regId: {
+    createdBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -110,7 +110,7 @@ class Sharing extends Sequelize.Model {
       unique: "FK_SHARING_TO_USER1",
       field: 'REG_ID'
     },
-    chgId: {
+    modifiedBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -162,6 +162,8 @@ class Sharing extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt:"createdDate",
+    updatedAt:"updatedDate",
     tableName: 'TB_SHARING'
     });
   return Sharing;

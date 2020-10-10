@@ -40,12 +40,12 @@ class Board extends Sequelize.Model {
       allowNull: true,
       field: 'CONTENT'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
     },
-    regIp: {
+    createdIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'REG_IP'
@@ -65,12 +65,12 @@ class Board extends Sequelize.Model {
       allowNull: true,
       field: 'MENU_UID'
     },
-    chgDt: {
+    modifiedDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'CHG_DT'
     },
-    chgIp: {
+    modifiedIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'CHG_IP'
@@ -115,7 +115,7 @@ class Board extends Sequelize.Model {
       allowNull: true,
       field: 'VIEW_CNT'
     },
-    regId: {
+    createdBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -135,7 +135,7 @@ class Board extends Sequelize.Model {
       unique: "FK_BOARD_TO_BOARD_CATE",
       field: 'CATE_ID'
     },
-    chgId: {
+    modifiedBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -147,6 +147,8 @@ class Board extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt:"createdDate",
+    updatedAt:"updatedDate",
     tableName: 'TB_BOARD'
     });
   return Board;
@@ -155,7 +157,7 @@ class Board extends Sequelize.Model {
   static associate(models) {
     models.Board.belongsTo(models.User, {
       foreignKey: {
-        name: 'regId'
+        name: 'createdBy'
       }
     })
   }

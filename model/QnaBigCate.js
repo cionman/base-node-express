@@ -20,12 +20,12 @@ class QnaBigCate extends Sequelize.Model {
       allowNull: true,
       field: 'CATE_ORDER'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
     },
-    regIp: {
+    createdIp: {
       type: DataTypes.STRING(255),
       allowNull: true,
       field: 'REG_IP'
@@ -35,12 +35,12 @@ class QnaBigCate extends Sequelize.Model {
       allowNull: true,
       field: 'MENU_UID'
     },
-    chgDt: {
+    modifiedDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'CHG_DT'
     },
-    chgIp: {
+    modifiedIp: {
       type: DataTypes.STRING(255),
       allowNull: true,
       field: 'CHG_IP'
@@ -50,7 +50,7 @@ class QnaBigCate extends Sequelize.Model {
       allowNull: true,
       field: 'CATE_NAME'
     },
-    regId: {
+    createdBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -60,7 +60,7 @@ class QnaBigCate extends Sequelize.Model {
       unique: "FK_QNA_BIGCATE_TO_USER1",
       field: 'REG_ID'
     },
-    chgId: {
+    modifiedBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -72,6 +72,8 @@ class QnaBigCate extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt:"createdDate",
+    updatedAt:"updatedDate",
     tableName: 'TB_QNA_BIG_CATE'
     });
   return QnaBigCate;

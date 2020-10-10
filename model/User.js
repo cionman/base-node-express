@@ -45,12 +45,12 @@ class User extends Sequelize.Model {
         return rawValue ? decryptAES256(rawValue) : '';
       }
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
     },
-    regIp: {
+    createdIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'REG_IP'
@@ -108,7 +108,7 @@ class User extends Sequelize.Model {
       unique: "UQ_USER__LOGIN_ID",
       field: 'LOGIN_ID'
     },
-    chgDt: {
+    modifiedDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'CHG_DT'
@@ -142,7 +142,7 @@ class User extends Sequelize.Model {
       allowNull: true,
       field: 'PASSWD'
     },
-    passwdChgDt: {
+    passwdmodifiedDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'PASSWD_CHG_DT'
@@ -186,6 +186,8 @@ class User extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt:"createdDate",
+    updatedAt:"updatedDate",
     tableName: 'TB_USER'
     });
   return User;

@@ -15,12 +15,12 @@ class AttachedFile extends Sequelize.Model {
       primaryKey: true,
       field: 'ATTACHED_FILE_ID'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
     },
-    regIp: {
+    createdIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'REG_IP'
@@ -46,7 +46,7 @@ class AttachedFile extends Sequelize.Model {
       unique: "UQ_ATTACHED_FILE__FILE_UUID",
       field: 'FILE_UUID'
     },
-    regId: {
+    createdBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -58,6 +58,7 @@ class AttachedFile extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt:"createdDate",
     tableName: 'TB_ATTACHED_FILE'
     });
   return AttachedFile;

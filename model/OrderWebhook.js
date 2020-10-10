@@ -15,7 +15,7 @@ class OrderWebhook extends Sequelize.Model {
       primaryKey: true,
       field: 'ORDER_WEBHOOK_ID'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
@@ -37,6 +37,7 @@ class OrderWebhook extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt:"createdDate",
     tableName: 'TB_ORDER_WEBHOOK'
     });
   return OrderWebhook;

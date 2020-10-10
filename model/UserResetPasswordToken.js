@@ -15,12 +15,12 @@ class UserResetPasswordToken extends Sequelize.Model {
       primaryKey: true,
       field: 'USER_RESET_PASSWORD_TOKEN_ID'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
     },
-    regIp: {
+    createdIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'REG_IP'
@@ -43,6 +43,7 @@ class UserResetPasswordToken extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt:"createdDate",
     tableName: 'TB_USER_RESET_PASSWORD_TOKEN'
     });
   return UserResetPasswordToken;

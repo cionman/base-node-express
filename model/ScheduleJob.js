@@ -19,12 +19,12 @@ class ScheduleJob extends Sequelize.Model {
       allowNull: true,
       field: 'JOB_NAME'
     },
-    chgDt: {
+    modifiedDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'CHG_DT'
     },
-    chgIp: {
+    modifiedIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'CHG_IP'
@@ -34,7 +34,7 @@ class ScheduleJob extends Sequelize.Model {
       allowNull: true,
       field: 'RUN_YN'
     },
-    chgId: {
+    modifiedBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -46,6 +46,7 @@ class ScheduleJob extends Sequelize.Model {
     }
   }, {
     sequelize,
+    updatedAt:"updatedDate",
     tableName: 'TB_SCHEDULE_JOB'
     });
   return ScheduleJob;

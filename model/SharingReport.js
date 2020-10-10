@@ -15,22 +15,22 @@ class SharingReport extends Sequelize.Model {
       primaryKey: true,
       field: 'SHARING_REPORT_ID'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
     },
-    regIp: {
+    createdIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'REG_IP'
     },
-    chgDt: {
+    modifiedDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'CHG_DT'
     },
-    chgIp: {
+    modifiedIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'CHG_IP'
@@ -40,7 +40,7 @@ class SharingReport extends Sequelize.Model {
       allowNull: true,
       field: 'REPORT_ETC'
     },
-    regId: {
+    createdBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -50,7 +50,7 @@ class SharingReport extends Sequelize.Model {
       unique: "FK_SHARING_REPORT_TO_USER1",
       field: 'REG_ID'
     },
-    chgId: {
+    modifiedBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -92,6 +92,8 @@ class SharingReport extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt:"createdDate",
+    updatedAt:"updatedDate",
     tableName: 'TB_SHARING_REPORT'
     });
   return SharingReport;

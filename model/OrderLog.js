@@ -20,12 +20,12 @@ class OrderLog extends Sequelize.Model {
       allowNull: true,
       field: 'AMOUNT'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
     },
-    regIp: {
+    createdIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'REG_IP'
@@ -50,7 +50,7 @@ class OrderLog extends Sequelize.Model {
       allowNull: true,
       field: 'ORDER_STATUS'
     },
-    regId: {
+    createdBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -72,6 +72,7 @@ class OrderLog extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt:"createdDate",
     tableName: 'TB_ORDER_LOG'
     });
   return OrderLog;

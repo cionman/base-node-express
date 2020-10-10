@@ -15,22 +15,22 @@ class UserRole extends Sequelize.Model {
       primaryKey: true,
       field: 'ROLE_ID'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
     },
-    regIp: {
+    createdIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'REG_IP'
     },
-    chgDt: {
+    modifiedDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'CHG_DT'
     },
-    chgIp: {
+    modifiedIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'CHG_IP'
@@ -48,7 +48,7 @@ class UserRole extends Sequelize.Model {
     /*
     // 임시 주석 : Cyclic dependency found. TB_USER is dependent of itself.
     // Dependency chain: TB_ATTACHED_FILE -> TB_USER -> TB_USER_ROLE => TB_USER
-    regId: {
+    createdBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -58,7 +58,7 @@ class UserRole extends Sequelize.Model {
       unique: "FK_USER_ROLE_TO_USER1",
       field: 'REG_ID'
     },
-    chgId: {
+    modifiedBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -70,6 +70,8 @@ class UserRole extends Sequelize.Model {
     }*/
   }, {
     sequelize,
+    createdAt:"createdDate",
+    updatedAt:"updatedDate",
     tableName: 'TB_USER_ROLE'
     });
   return UserRole;

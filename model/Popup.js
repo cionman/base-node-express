@@ -15,12 +15,12 @@ class Popup extends Sequelize.Model {
       primaryKey: true,
       field: 'POPUP_ID'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
     },
-    regIp: {
+    createdIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'REG_IP'
@@ -45,12 +45,12 @@ class Popup extends Sequelize.Model {
       allowNull: true,
       field: 'POPUP_MOBILE_IMAGE'
     },
-    chgDt: {
+    modifiedDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'CHG_DT'
     },
-    chgIp: {
+    modifiedIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'CHG_IP'
@@ -100,7 +100,7 @@ class Popup extends Sequelize.Model {
       allowNull: true,
       field: 'POPUP_URL'
     },
-    regId: {
+    createdBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -110,7 +110,7 @@ class Popup extends Sequelize.Model {
       unique: "FK_POPUP_TO_USER1",
       field: 'REG_ID'
     },
-    chgId: {
+    modifiedBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -122,6 +122,8 @@ class Popup extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt:"createdDate",
+    updatedAt:"updatedDate",
     tableName: 'TB_POPUP'
     });
   return Popup;

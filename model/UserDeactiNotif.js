@@ -15,7 +15,7 @@ class UserDeactiNotif extends Sequelize.Model {
       primaryKey: true,
       field: 'NOTIF_ID'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
@@ -37,6 +37,7 @@ class UserDeactiNotif extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt:"createdDate",
     tableName: 'TB_USER_DEACTI_NOTIF'
     });
   return UserDeactiNotif;

@@ -30,12 +30,12 @@ class CampaignJoin extends Sequelize.Model {
       allowNull: true,
       field: 'CONFIRM_BOX_CNT'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
     },
-    regIp: {
+    createdIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'REG_IP'
@@ -95,12 +95,12 @@ class CampaignJoin extends Sequelize.Model {
       allowNull: true,
       field: 'MENU_UID'
     },
-    chgDt: {
+    modifiedDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'CHG_DT'
     },
-    chgIp: {
+    modifiedIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'CHG_IP'
@@ -150,7 +150,7 @@ class CampaignJoin extends Sequelize.Model {
       unique: "FK_CAMPAIGN_JOIN_TO_CAMPAIGN",
       field: 'CAMPAIGN_ID'
     },
-    regId: {
+    createdBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -160,7 +160,7 @@ class CampaignJoin extends Sequelize.Model {
       unique: "FK_CAMPAIGN_JOIN_TO_USER1",
       field: 'REG_ID'
     },
-    chgId: {
+    modifiedBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -172,6 +172,8 @@ class CampaignJoin extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt:"createdDate",
+    updatedAt:"updatedDate",
     tableName: 'TB_CAMPAIGN_JOIN'
     });
   return CampaignJoin;

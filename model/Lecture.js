@@ -20,12 +20,12 @@ class Lecture extends Sequelize.Model {
       allowNull: true,
       field: 'CONTENT'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
     },
-    regIp: {
+    createdIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'REG_IP'
@@ -50,12 +50,12 @@ class Lecture extends Sequelize.Model {
       allowNull: true,
       field: 'MENU_UID'
     },
-    chgDt: {
+    modifiedDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'CHG_DT'
     },
-    chgIp: {
+    modifiedIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'CHG_IP'
@@ -125,7 +125,7 @@ class Lecture extends Sequelize.Model {
       allowNull: true,
       field: 'WEEKDAY'
     },
-    regId: {
+    createdBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -145,7 +145,7 @@ class Lecture extends Sequelize.Model {
       unique: "FK_LECTURE_TO_LECTURE_GROUP",
       field: 'LECTURE_GROUP_ID'
     },
-    chgId: {
+    modifiedBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -167,6 +167,8 @@ class Lecture extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt:"createdDate",
+    updatedAt:"updatedDate",
     tableName: 'TB_LECTURE'
     });
   return Lecture;

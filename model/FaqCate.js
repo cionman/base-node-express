@@ -15,12 +15,12 @@ class FaqCate extends Sequelize.Model {
       primaryKey: true,
       field: 'CATE_ID'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
     },
-    regIp: {
+    createdIp: {
       type: DataTypes.STRING(255),
       allowNull: true,
       field: 'REG_IP'
@@ -30,12 +30,12 @@ class FaqCate extends Sequelize.Model {
       allowNull: true,
       field: 'MENU_UID'
     },
-    chgDt: {
+    modifiedDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'CHG_DT'
     },
-    chgIp: {
+    modifiedIp: {
       type: DataTypes.STRING(255),
       allowNull: true,
       field: 'CHG_IP'
@@ -50,7 +50,7 @@ class FaqCate extends Sequelize.Model {
       allowNull: true,
       field: 'ORDER_SEQ'
     },
-    regId: {
+    createdBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -60,7 +60,7 @@ class FaqCate extends Sequelize.Model {
       unique: "FK_FAQ_CATE_TO_USER1",
       field: 'REG_ID'
     },
-    chgId: {
+    modifiedBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -72,6 +72,8 @@ class FaqCate extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt:"createdDate",
+    updatedAt:"updatedDate",
     tableName: 'TB_FAQ_CATE'
     });
   return FaqCate;

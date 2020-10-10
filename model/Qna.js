@@ -25,12 +25,12 @@ class Qna extends Sequelize.Model {
       allowNull: true,
       field: 'ANSWER_DT'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
     },
-    regIp: {
+    createdIp: {
       type: DataTypes.STRING(255),
       allowNull: true,
       field: 'REG_IP'
@@ -40,12 +40,12 @@ class Qna extends Sequelize.Model {
       allowNull: true,
       field: 'MENU_UID'
     },
-    chgDt: {
+    modifiedDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'CHG_DT'
     },
-    chgIp: {
+    modifiedIp: {
       type: DataTypes.STRING(255),
       allowNull: true,
       field: 'CHG_IP'
@@ -105,7 +105,7 @@ class Qna extends Sequelize.Model {
       unique: "FK_QNA_TO_USER2",
       field: 'ANSWER_ID'
     },
-    regId: {
+    createdBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -137,7 +137,9 @@ class Qna extends Sequelize.Model {
     }
   }, {
     sequelize,
-    tableName: 'TB_QNA'
+    createdAt:"createdDate",
+    updatedAt:"updatedDate",
+    tableName: 'TB_QNA',
     });
   return Qna;
   }

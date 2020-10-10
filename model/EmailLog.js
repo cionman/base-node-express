@@ -20,7 +20,7 @@ class EmailLog extends Sequelize.Model {
       allowNull: true,
       field: 'CONTENT'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
@@ -47,6 +47,7 @@ class EmailLog extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt:"createdDate",
     tableName: 'TB_EMAIL_LOG'
     });
   return EmailLog;

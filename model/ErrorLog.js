@@ -15,7 +15,7 @@ class ErrorLog extends Sequelize.Model {
       primaryKey: true,
       field: 'ERROR_LOG_ID'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
@@ -32,6 +32,7 @@ class ErrorLog extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt:"createdDate",
     tableName: 'TB_ERROR_LOG'
     });
   return ErrorLog;

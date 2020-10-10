@@ -15,12 +15,12 @@ class SiteConfig extends Sequelize.Model {
       primaryKey: true,
       field: 'SITE_CONFIG_ID'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
     },
-    regIp: {
+    createdIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'REG_IP'
@@ -90,12 +90,12 @@ class SiteConfig extends Sequelize.Model {
       allowNull: true,
       field: 'KAKAO_RESTAPI_KEY'
     },
-    chgDt: {
+    modifiedDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'CHG_DT'
     },
-    chgIp: {
+    modifiedIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'CHG_IP'
@@ -230,7 +230,7 @@ class SiteConfig extends Sequelize.Model {
       allowNull: true,
       field: 'SLEEP_USER_INSTANT_DESTROY_YN'
     },
-    regId: {
+    createdBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -240,7 +240,7 @@ class SiteConfig extends Sequelize.Model {
       unique: "FK_SITE_CONFIG_TO_USER1",
       field: 'REG_ID'
     },
-    chgId: {
+    modifiedBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -252,6 +252,8 @@ class SiteConfig extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt:"createdDate",
+    updatedAt:"updatedDate",
     tableName: 'TB_SITE_CONFIG'
     });
   return SiteConfig;

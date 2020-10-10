@@ -50,12 +50,12 @@ class MenuInfo extends Sequelize.Model {
       allowNull: true,
       field: 'CONTENT_TYPE'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
     },
-    regIp: {
+    createdIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'REG_IP'
@@ -122,12 +122,12 @@ class MenuInfo extends Sequelize.Model {
       unique: "UQ_MENU_INFO__MENU_UID",
       field: 'MENU_UID'
     },
-    chgDt: {
+    modifiedDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'CHG_DT'
     },
-    chgIp: {
+    modifiedIp: {
       type: DataTypes.STRING(15),
       allowNull: true,
       field: 'CHG_IP'
@@ -172,7 +172,7 @@ class MenuInfo extends Sequelize.Model {
       allowNull: true,
       field: 'URL_KEYWORD'
     },
-    regId: {
+    createdBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -182,7 +182,7 @@ class MenuInfo extends Sequelize.Model {
       unique: "FK_MENU_INFO_TO_USER1",
       field: 'REG_ID'
     },
-    chgId: {
+    modifiedBy: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -194,6 +194,8 @@ class MenuInfo extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt:"createdDate",
+    updatedAt:"updatedDate",
     tableName: 'TB_MENU_INFO'
     });
   return MenuInfo;

@@ -15,12 +15,12 @@ class UserLoginLog extends Sequelize.Model {
       primaryKey: true,
       field: 'LOGIN_LOG_ID'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
     },
-    regIp: {
+    createdIp: {
       type: DataTypes.STRING(255),
       allowNull: true,
       field: 'REG_IP'
@@ -42,6 +42,7 @@ class UserLoginLog extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt:"createdDate",
     tableName: 'TB_USER_LOGIN_LOG'
     });
   return UserLoginLog;

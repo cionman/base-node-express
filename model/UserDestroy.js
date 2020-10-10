@@ -14,7 +14,7 @@ class UserDestroy extends Sequelize.Model {
       primaryKey: true,
       field: 'USER_ID'
     },
-    regDt: {
+    createdDate: {
       type: DataTypes.DATE,
       allowNull: true,
       field: 'REG_DT'
@@ -26,6 +26,7 @@ class UserDestroy extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt:"createdDate",
     tableName: 'TB_USER_DESTROY'
     });
   return UserDestroy;
