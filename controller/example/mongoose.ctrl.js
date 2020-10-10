@@ -5,6 +5,7 @@ const router = Router();
 const User = require('../../schema/user')
 const Comment = require('../../schema/comment')
 const { wrapAsync } = require('../../common/util/func');
+const mongoose = require('mongoose')
 
 
 router.get('/', wrapAsync(async (req, res) =>{
@@ -71,5 +72,23 @@ router.route('/comments/:id')
           next(err);
        }
     });
+
+router.get('/transaction/example', wrapAsync( async (req, res) => {
+   /*
+     현재 mongodb transaction은 replica 환경에서만 작동된다.
+     로컬 환경에서 run-rs 패키지를 활용한 테스트 환경 구축이 가능하지만 알수 없는 오류로 동작하지 않는다.
+
+      http://thecodebarbarian.com/introducing-run-rs-zero-config-mongodb-runner
+      https://stackoverflow.com/questions/51461952/mongodb-v4-0-transaction-mongoerror-transaction-numbers-are-only-allowed-on-a/51462024
+    */
+   const session = await mongoose.startSession()
+   await session.withTransaction(async() => {
+      //await User.create([{ name: 'Test1', age: 9, married: false, phone: "222" }], { session: session })
+
+      return await User.create([{ name: 'Test2', age: 10, married: false, phone: "111" }], { session: session })
+   });
+
+   session.endSession();
+}))
 
 module.exports = router;

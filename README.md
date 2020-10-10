@@ -104,6 +104,12 @@ sequelize-auto -o "./model" --cm p --cp c --cf p  -d base -h localhost -u root -
 - conf 파일에 오류가 있는 상태에서는 비인증 모드에서는 정상구동이 된다.
 - 오류 확인은 `/usr/local/opt/mongodb-community@4.4/bin/mongod --config=/usr/local/etc/mongod.conf` 이렇게 직접실행해보면 오류확인이 가능하다.
 
+# mongodb transaction 테스트 관련
 
+- 현재 mongodb transaction은 replica 환경에서만 작동된다.
+- 로컬 환경에서 run-rs 패키지를 활용한 테스트 환경 구축이 가능하지만 알수 없는 오류로 동작하지 않는다.
+- [http://thecodebarbarian.com/introducing-run-rs-zero-config-mongodb-runner](http://thecodebarbarian.com/introducing-run-rs-zero-config-mongodb-runner)
+- [https://stackoverflow.com/questions/51461952/mongodb-v4-0-transaction-mongoerror-transaction-numbers-are-only-allowed-on-a/51462024](https://stackoverflow.com/questions/51461952/mongodb-v4-0-transaction-mongoerror-transaction-numbers-are-only-allowed-on-a/51462024)
+        
 
 # 임시 메모
