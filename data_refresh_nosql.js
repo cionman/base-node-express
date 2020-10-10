@@ -1,5 +1,6 @@
 const { MongoClient } = require("mongodb");
 const { tree } = require('./common/util/func')
+const { encryptAES256 } = require('./common/util/crypto.util')
 require("dotenv").config();
 const {NODE_ENV, MONGO_DATABASE, MONGO_DB_USER, MONGO_DB_PASSWORD, MONGO_DB_HOST} = process.env
 const uri = `mongodb://${MONGO_DB_USER}:${MONGO_DB_PASSWORD}@${MONGO_DB_HOST}:27017/?poolSize=20&w=majority`
@@ -21,9 +22,9 @@ async function run() {
 
         const usersCollection = await db.collection('users')
         const users = [
-            { name: "이수", age: 30 },
-            { name: "김슈", age: 21 },
-            { name: "최숸", age: 39 },
+            { name: encryptAES256("이수"), age: 30, married: false, phone: encryptAES256("00011112222") },
+            { name: encryptAES256("김슈"), age: 21, married: true, phone: encryptAES256("00022222222") },
+            { name: encryptAES256("최숸"), age: 39, married: false, phone: encryptAES256("00033332222") },
         ];
         usersCollection.insertMany(users)
 

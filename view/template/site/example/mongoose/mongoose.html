@@ -28,6 +28,7 @@
         <th>이름</th>
         <th>나이</th>
         <th>결혼여부</th>
+        <th>전화번호</th>
     </tr>
     </thead>
     <tbody>
@@ -37,6 +38,7 @@
         <td>{{user.name}}</td>
         <td>{{user.age}}</td>
         <td>{{ '기혼' if user.married else '미혼'}}</td>
+        <td>{{ user.phone }}</td>
     </tr>
     {% endfor %}
     </tbody>
@@ -102,6 +104,9 @@
                 row.appendChild(td);
                 td = document.createElement('td');
                 td.textContent = user.married ? '기혼' : '미혼';
+                row.appendChild(td);
+                td = document.createElement('td');
+                td.textContent = user.phone;
                 row.appendChild(td);
                 tbody.appendChild(row);
             });
