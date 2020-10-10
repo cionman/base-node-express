@@ -14,6 +14,9 @@ module.exports = {
         return result
     },
     decryptAES256 : (str) => {
+
+        if(!str) return ""
+
         const decipher = crypto.createDecipheriv('aes-256-cbc', key, iv);
         let result = decipher.update(str, 'base64', 'utf8');
         result += decipher.final('utf8');
