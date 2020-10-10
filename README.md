@@ -98,4 +98,12 @@ sequelize-auto -o "./model" --cm p --cp c --cf p  -d base -h localhost -u root -
 - [hpp](https://www.npmjs.com/package/hpp) : 로그인 무차별 대입 공격 방어용
 
 
+#Mac에서 mongodb 인증 모드가 잘 구동이 되지 않을때
+
+- `/usr/local/etc/mongod.conf` 에 있는 내용의 띄어쓰기가 잘못되어있는 경우가 있다. yml형식에 맞추어야한다.(콜론 문자 다음에 한칸띄우기)
+- conf 파일에 오류가 있는 상태에서는 비인증 모드에서는 정상구동이 된다.
+- 오류 확인은 `/usr/local/opt/mongodb-community@4.4/bin/mongod --config=/usr/local/etc/mongod.conf` 이렇게 직접실행해보면 오류확인이 가능하다.
+
+
+
 # 임시 메모
