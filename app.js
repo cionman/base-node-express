@@ -196,6 +196,7 @@ class ApiServer extends http.Server {
   setLocals() {
     // 템플릿에 사용할 전역 변수
     this.app.use((req, res, next) => {
+      this.app.locals.buildTime=Date.now()
       this.app.locals.csrfToken = req.csrfToken()
       this.app.locals.isLogin = true; //TODO 로그인 여부 작업 필요
       this.app.locals.req_path = req.path;
