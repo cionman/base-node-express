@@ -1,3 +1,20 @@
+    CREATE TABLE `sessions` (
+        `session_id` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+        `expires` int(11) unsigned NOT NULL,
+        `data` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+        PRIMARY KEY (`session_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+    CREATE TABLE `TB_PRODUCTS` (
+      `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+      `NAME` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT '',
+      `PRICE` int(11) NOT NULL,
+      `DESCRIPTION` longtext COLLATE utf8mb4_unicode_ci,
+      `REG_DT` datetime DEFAULT NULL,
+      `CHG_DT` datetime DEFAULT NULL,
+      PRIMARY KEY (`ID`),
+      KEY `t_b__p_r_o_d_u_c_t_s_name` (`NAME`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
     create table TB_ATTACHED_FILE (
        ATTACHED_FILE_ID bigint not null auto_increment,
@@ -360,18 +377,6 @@
         primary key (MENU_UID)
     ) engine=InnoDB;
 
-    create table TB_KOTLIN_TEST (
-       BOARD_ID bigint not null auto_increment,
-        CONTENT longtext,
-        REG_DT datetime,
-        REG_IP varchar(15),
-        modifiedDate datetime,
-        CHG_IP varchar(15),
-        TITLE varchar(300),
-        REG_ID bigint,
-        CHG_ID bigint,
-        primary key (BOARD_ID)
-    ) engine=InnoDB;
 
     create table TB_LECTURE (
        LECTURE_ID bigint not null auto_increment,
@@ -1070,7 +1075,6 @@ create index IDX_FAQ__TITLE on TB_FAQ (TITLE);
 create index IDX_FAQ__MENU_UID on TB_FAQ (MENU_UID);
 create index IDX_FAQCATE__CATE_NAME on TB_FAQ_CATE (CATE_NAME);
 create index IDX_FAQCATE__MENU_UID on TB_FAQ_CATE (MENU_UID);
-create index IDX_KOTLIN_TEST__TITLE on TB_KOTLIN_TEST (TITLE);
 create index IDX_LECTURE__MENU_UID on TB_LECTURE (MENU_UID);
 create index IDX_LECTURE__STATUS on TB_LECTURE (STATUS);
 create index IDX_LECTURE__RECRUIT_STATUS on TB_LECTURE (RECRUIT_STATUS);
@@ -1379,16 +1383,6 @@ create index IDX_TB_USER_WITHDRAWAL__LOGIN_ID on TB_USER_WITHDRAWAL (LOGIN_ID);
 
     alter table TB_HISTORY
        add constraint FK_HISTORY_TO_USER2
-       foreign key (CHG_ID)
-       references TB_USER (USER_ID);
-
-    alter table TB_KOTLIN_TEST
-       add constraint FK_KOTLIN_TEST_TO_USER
-       foreign key (REG_ID)
-       references TB_USER (USER_ID);
-
-    alter table TB_KOTLIN_TEST
-       add constraint FK_KOTLIN_TEST_TO_USER2
        foreign key (CHG_ID)
        references TB_USER (USER_ID);
 
