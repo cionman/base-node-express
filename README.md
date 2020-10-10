@@ -25,7 +25,7 @@ gulp watch
 - NODE_ENV=development 일 때만 동작한다.
 
 ```
-node data_refresh.js
+node data_refresh_sql.js
 ```
 
 ## 운영서버 설치
