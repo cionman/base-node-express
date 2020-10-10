@@ -24,8 +24,16 @@ gulp watch
 
 - NODE_ENV=development 일 때만 동작한다.
 
+- mysql 데이터 초기화
+
 ```
 node data_refresh_sql.js
+```
+
+- mongodb 데이터 초기화
+
+```
+node data_refresh_nosql.js
 ```
 
 ## 운영서버 설치
