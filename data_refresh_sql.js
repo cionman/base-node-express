@@ -17,7 +17,7 @@ const connection = mysql.createConnection({
 })
 
 connection.connect()
-
+console.log('--- DB 연결 시작 ---')
 const sql = dropSql + ddlSql + dataSql;
 
 connection.query(sql, (err, result, fields) => {
@@ -27,7 +27,10 @@ connection.query(sql, (err, result, fields) => {
         process.exit(1)
     }
     console.log('--- 데이터 초기화 성공 ---');
+    connection.end()
+    console.log('--- DB 연결 종료 ---')
+    process.exit(0)
 })
 
 
-connection.end()
+

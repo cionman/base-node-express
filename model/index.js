@@ -14,10 +14,22 @@ const db = {};
 let sequelize = new Sequelize(process.env.DATABASE, process.env.DB_USER, process.env.DB_PASSWORD, {
   host: process.env.DB_HOST,
   dialect: 'mysql',
-  timezone: '+09:00', //한국 시간 셋팅
+  timezone: '+09:00', //한국 시간 셋팅,
+  retry: {
+    match: [
+      /SequelizeConnectionError/,
+      /SequelizeConnectionRefusedError/,
+      /SequelizeHostNotFoundError/,
+      /SequelizeHostNotReachableError/,
+      /SequelizeInvalidConnectionError/,
+      /SequelizeConnectionTimedOutError/
+    ],
+    max: 5000
+  },
   pool: {
     max: 5,
     min: 0,
+    acquire: 30000,
     idle: 10000
   }
 });
