@@ -5,7 +5,7 @@ const { Schema } = mongoose
 const {Types: { ObjectId}} = Schema
 const commentSchema = new Schema({
     commenter: {
-        type: ObjectId,
+        type: ObjectId, // populate 기능을 통해 join과 비슷한 역할을 한다.
         required: true,
         ref: 'User',
     },
