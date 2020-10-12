@@ -137,7 +137,7 @@ class User extends Sequelize.Model {
       unique: "UQ_USER__USER_NICK",
       field: 'USER_NICK'
     },
-    passwd: {
+    password: {
       type: DataTypes.STRING(128),
       allowNull: true,
       field: 'PASSWD'

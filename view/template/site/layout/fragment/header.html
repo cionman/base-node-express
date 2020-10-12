@@ -1,8 +1,27 @@
 <!-- User Login -->
 <div class="nav-top">
     <ul class="user-menu">
-
-    </ul>
+        {% if loginUser %}
+        <li class="user-menu__item user-menu__item--login">
+            <a class="user-menu__link" href="/mypage">
+                <span class="user-menu__nick">{{ loginUser.userNick }}</span>
+            </a>
+        </li>
+        <li class="user-menu__item user-menu__item--join">
+            <a class="user-menu__link" href="/logout">로그아웃</a>
+        </li>
+        <!--<li class="user-menu__item">
+            <a class="user-menu__link" href="<@spring.url '/admin/index'/>" target="_blank">관리자페이지</a>
+        </li>-->
+    {% else %}
+        <li class="user-menu__item user-menu__item--login">
+            <a class="user-menu__link" href="/login">로그인</a>
+        </li>
+        <li class="user-menu__item user-menu__item--join">
+            <a class="user-menu__link" href="/join">회원가입</a>
+        </li>
+    {% endif %}
+</ul>
 </div>
 <nav class="navbar navbar-light navbar-expand-lg bg-white clean-navbar">
 

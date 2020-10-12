@@ -1,21 +1,23 @@
 'use strict'
 
-const express = require("express");
-const cookieParser = require("cookie-parser");
-const morgan = require("morgan");
-const path = require("path");
-const session = require("express-session");
-const MySQLStore = require('express-mysql-session')(session);
-const flash = require("connect-flash");
-const compression = require('compression');
-const helmet = require("helmet");
-const nunjucks = require("nunjucks");
-const bodyParser = require("body-parser");
-const db = require('./model');
-const { graphqlHTTP } = require('express-graphql');
+const express = require("express")
+const cookieParser = require("cookie-parser")
+const morgan = require("morgan")
+const path = require("path")
+const session = require("express-session")
+const MySQLStore = require('express-mysql-session')(session)
+const flash = require("connect-flash")
+const compression = require('compression')
+const helmet = require("helmet")
+const nunjucks = require("nunjucks")
+const bodyParser = require("body-parser")
+const db = require('./model')
+const { graphqlHTTP } = require('express-graphql')
 const http = require('http')
 const csrf = require('csurf')
-const mongoConnect = require('./schema');
+const mongoConnect = require('./schema')
+const passport = require('passport')
+const passportConfig = require('./common/passport')
 
 require("dotenv").config();
 
@@ -179,6 +181,9 @@ class ApiServer extends http.Server {
     }));
 
     this.app.use(csrf({ cookie: true }))
+    passportConfig()
+    this.app.use(passport.initialize()) // express-session 미들웨어보다 뒤쪽에 만들어야 한다.
+    this.app.use(passport.session())
   }
 
   setViewEngine() {
@@ -195,11 +200,16 @@ class ApiServer extends http.Server {
 
   setLocals() {
     // 템플릿에 사용할 전역 변수
-    this.app.use((req, res, next) => {
+      this.app.use((req, res, next) => {
       this.app.locals.buildTime=Date.now()
       this.app.locals.csrfToken = req.csrfToken()
-      this.app.locals.isLogin = true; //TODO 로그인 여부 작업 필요
       this.app.locals.req_path = req.path;
+      if(req.user){
+        this.app.locals.loginUser = req.user
+      }else{
+        this.app.locals.loginUser = null
+      }
+
       next();
     });
   }

@@ -99,7 +99,7 @@ class UserDeactivate extends Sequelize.Model {
       allowNull: true,
       field: 'USER_NICK'
     },
-    passwd: {
+    password: {
       type: DataTypes.STRING(128),
       allowNull: true,
       field: 'PASSWD'
