@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "npx nodemon server.js -e ejs,js,css,html,jpg,png,scss",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -64,5 +64,10 @@
     "sequelize": "^6.3.5",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
+  },
+  "devDependencies": {
+    "jest": "26.5.3",
+    "superagent": "6.1.0",
+    "supertest": "5.0.0"
   }
 }
