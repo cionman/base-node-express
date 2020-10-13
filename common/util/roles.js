@@ -5,8 +5,7 @@ exports.ROLES = {
     ADMIN : {
         grade : 10
     },
-
     SUPER_ADMIN :{
-        grade : 99999
+        grade : Infinity
     }
 }

@@ -1,6 +1,6 @@
 const multer = require('multer')
 const path = require('path')
-const { ROLES } = require('./constant')
+const { ROLES } = require('./roles')
 
 /*
 TODO aws s3 분기 처리 필요
