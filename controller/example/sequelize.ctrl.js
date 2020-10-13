@@ -275,6 +275,18 @@ router.get('/delete', wrapAsync(async (req, res) => {
 }));
 
 
+router.get('/sanitize-html', wrapAsync(async (req, res) => {
+    const board = await models.Board.create({
+        title: '트랜잭션 테스트 상품',
+        content: `
+        <img src=x onerror=alert('img') />
+        <h3>테스트</h3>
+        <script>alert('hello world')</script>")
+        `
+    });
+    res.json(board)
+}));
+
 
 
 

@@ -1,6 +1,8 @@
 'use strict';
 
 const Sequelize = require('sequelize');
+const sanitizeHtml = require('sanitize-html');
+
 module.exports = (sequelize, DataTypes) => {
   return Board.init(sequelize, DataTypes);
 }
@@ -38,7 +40,10 @@ class Board extends Sequelize.Model {
     content: {
       type: "LONGTEXT",
       allowNull: true,
-      field: 'CONTENT'
+      field: 'CONTENT',
+      set(value) {
+        this.setDataValue('content', sanitizeHtml(value));
+      }
     },
     createdDate: {
       type: DataTypes.DATE,
