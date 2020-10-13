@@ -182,7 +182,8 @@ class User extends Sequelize.Model {
         key: 'ROLE_ID'
       },
       unique: "FK_USER_TO_USER_ROLE",
-      field: 'ROLE_ID'
+      field: 'ROLE_ID',
+      defaultValue: 3
     },
     role: {
       type: DataTypes.VIRTUAL,

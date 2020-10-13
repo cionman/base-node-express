@@ -1,5 +1,6 @@
 const multer = require('multer')
 const path = require('path')
+const { ROLES } = require('./constant')
 
 /*
 TODO aws s3 분기 처리 필요
@@ -46,7 +47,22 @@ exports.isNotLogin = (req, res, next) =>{
     }
 }
 
-exports.adminRequired = (req, res, next) =>{
-    console.error('TODO : 관리자 로그인 체크 필요');
-    next();
+exports.hasRole = ( minimumRole = '') => {
+    const minimumGrade = ROLES[minimumRole].grade
+    return (req, res, next) => {
+        if(req.isAuthenticated()){
+            if(minimumRole === 'USER'){
+                next()
+            }else{
+                const reqUserRole = req.user.role
+                if(reqUserRole.some(userRole => ROLES[userRole].grade >= minimumGrade)){
+                    next()
+                }else{
+                    res.sendStatus(403)
+                }
+            }
+        }else{
+            res.redirect('/login')
+        }
+    }
 }
