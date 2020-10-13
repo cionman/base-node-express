@@ -76,7 +76,7 @@ class TermAgree extends Sequelize.Model {
   }, {
     sequelize,
     createdAt:"createdDate",
-    updatedAt:"updatedDate",
+    updatedAt:"modifiedDate",
     tableName: 'TB_TERM_AGREE'
     });
   return TermAgree;

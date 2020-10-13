@@ -71,7 +71,7 @@ class UserRole extends Sequelize.Model {
   }, {
     sequelize,
     createdAt:"createdDate",
-    updatedAt:"updatedDate",
+    updatedAt:"modifiedDate",
     tableName: 'TB_USER_ROLE'
     });
   return UserRole;

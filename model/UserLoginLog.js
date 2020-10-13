@@ -43,6 +43,7 @@ class UserLoginLog extends Sequelize.Model {
   }, {
     sequelize,
     createdAt:"createdDate",
+    updatedAt: false,
     tableName: 'TB_USER_LOGIN_LOG'
     });
   return UserLoginLog;

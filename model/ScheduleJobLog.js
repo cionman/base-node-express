@@ -52,6 +52,8 @@ class ScheduleJobLog extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt: false,
+    updatedAt: false,
     tableName: 'TB_SCHEDULE_JOB_LOG'
     });
   return ScheduleJobLog;

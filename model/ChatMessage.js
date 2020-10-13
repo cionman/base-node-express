@@ -47,6 +47,8 @@ class ChatMessage extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt: false,
+    updatedAt: false,
     tableName: 'TB_CHAT_MESSAGE'
     });
   return ChatMessage;

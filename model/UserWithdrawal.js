@@ -157,6 +157,8 @@ class UserWithdrawal extends Sequelize.Model {
   }, {
     sequelize,
     timestamps: false,
+    createdAt: false,
+    updatedAt: false,
     tableName: 'TB_USER_WITHDRAWAL'
     });
   return UserWithdrawal;

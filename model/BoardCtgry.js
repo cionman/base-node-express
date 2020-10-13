@@ -73,7 +73,7 @@ class BoardCtgry extends Sequelize.Model {
   }, {
     sequelize,
     createdAt:"createdDate",
-    updatedAt:"updatedDate",
+    updatedAt:"modifiedDate",
     tableName: 'TB_BOARD_CTGRY'
     });
   return BoardCtgry;

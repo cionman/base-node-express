@@ -22,6 +22,8 @@ class Tag extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt: false,
+    updatedAt: false,
     tableName: 'TB_TAG'
     });
   return Tag;

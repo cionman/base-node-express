@@ -53,6 +53,7 @@ class TermAgreeHistory extends Sequelize.Model {
   }, {
     sequelize,
     createdAt:"createdDate",
+    updatedAt: false,
     tableName: 'TB_TERM_AGREE_HISTORY'
     });
   return TermAgreeHistory;

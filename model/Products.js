@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
             price : { type: DataTypes.INTEGER, allowNull: false, field: 'PRICE'},
             description : { type: DataTypes.TEXT('long'), field: 'DESCRIPTION' },
             createdDate : {type: DataTypes.DATE, field: 'REG_DT'},
-            updatedDate : {type: DataTypes.DATE, field: 'CHG_DT'},
+            modifiedDate : {type: DataTypes.DATE, field: 'CHG_DT'},
         },
         {
             sequelize,
@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
             tableName: 'TB_PRODUCTS',
             indexes: [{ unique: false, fields: ['name'] }],
             createdAt:"createdDate",
-            updatedAt:"updatedDate",
+            updatedAt:"modifiedDate",
         });
     return Products;
 };

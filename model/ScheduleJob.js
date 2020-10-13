@@ -46,7 +46,8 @@ class ScheduleJob extends Sequelize.Model {
     }
   }, {
     sequelize,
-    updatedAt:"updatedDate",
+    createdAt: false,
+    updatedAt:"modifiedDate",
     tableName: 'TB_SCHEDULE_JOB'
     });
   return ScheduleJob;

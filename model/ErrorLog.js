@@ -33,6 +33,7 @@ class ErrorLog extends Sequelize.Model {
   }, {
     sequelize,
     createdAt:"createdDate",
+    updatedAt: false,
     tableName: 'TB_ERROR_LOG'
     });
   return ErrorLog;

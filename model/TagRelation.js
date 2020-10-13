@@ -32,6 +32,8 @@ class TagRelation extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt: false,
+    updatedAt: false,
     tableName: 'TB_TAG_RELATION'
     });
   return TagRelation;

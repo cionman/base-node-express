@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
             url : { type: DataTypes.STRING(300), primaryKey: true, field: 'URL'},
             content : { type: DataTypes.TEXT('long'), field: 'CONTENT' },
             createdDate : {type: DataTypes.DATE, field: 'REG_DT'},
-            updatedDate : {type: DataTypes.DATE, field: 'CHG_DT'},
+            modifiedDate : {type: DataTypes.DATE, field: 'CHG_DT'},
         },
         {
             sequelize,
@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
             modelName: 'Crawling',
             tableName: 'TB_CRAWLING',
             createdAt:"createdDate",
-            updatedAt:"updatedDate",
+            updatedAt:"modifiedDate",
         });
     return Crawling;
 };

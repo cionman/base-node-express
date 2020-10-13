@@ -26,6 +26,8 @@ class ChatRoom extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt: false,
+    updatedAt: false,
     tableName: 'TB_CHAT_ROOM'
     });
   return ChatRoom;

@@ -41,6 +41,7 @@ class BoardLike extends Sequelize.Model {
   }, {
     sequelize,
     createdAt:"createdDate",
+    updatedAt: false,
     tableName: 'TB_BOARD_LIKE'
     });
   return BoardLike;

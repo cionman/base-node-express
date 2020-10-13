@@ -38,6 +38,7 @@ class UserDeactiNotif extends Sequelize.Model {
   }, {
     sequelize,
     createdAt:"createdDate",
+    updatedAt: false,
     tableName: 'TB_USER_DEACTI_NOTIF'
     });
   return UserDeactiNotif;

@@ -27,6 +27,7 @@ class UserDestroy extends Sequelize.Model {
   }, {
     sequelize,
     createdAt:"createdDate",
+    updatedAt: false,
     tableName: 'TB_USER_DESTROY'
     });
   return UserDestroy;

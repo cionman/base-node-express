@@ -88,7 +88,7 @@ class TermCtgry extends Sequelize.Model {
   }, {
     sequelize,
     createdAt:"createdDate",
-    updatedAt:"updatedDate",
+    updatedAt:"modifiedDate",
     tableName: 'TB_TERM_CTGRY'
     });
   return TermCtgry;

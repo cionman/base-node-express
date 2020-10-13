@@ -123,7 +123,7 @@ class Popup extends Sequelize.Model {
   }, {
     sequelize,
     createdAt:"createdDate",
-    updatedAt:"updatedDate",
+    updatedAt:"modifiedDate",
     tableName: 'TB_POPUP'
     });
   return Popup;

@@ -48,6 +48,7 @@ class EmailLog extends Sequelize.Model {
   }, {
     sequelize,
     createdAt:"createdDate",
+    updatedAt: false,
     tableName: 'TB_EMAIL_LOG'
     });
   return EmailLog;

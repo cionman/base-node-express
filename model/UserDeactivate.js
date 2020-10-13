@@ -146,6 +146,8 @@ class UserDeactivate extends Sequelize.Model {
     }
   }, {
     sequelize,
+    createdAt: false,
+    updatedAt: false,
     timestamps: false,
     tableName: 'TB_USER_DEACTIVATE'
     });

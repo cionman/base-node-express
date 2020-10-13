@@ -44,6 +44,7 @@ class UserResetPasswordToken extends Sequelize.Model {
   }, {
     sequelize,
     createdAt:"createdDate",
+    updatedAt: false,
     tableName: 'TB_USER_RESET_PASSWORD_TOKEN'
     });
   return UserResetPasswordToken;
