@@ -183,6 +183,19 @@ class User extends Sequelize.Model {
       },
       unique: "FK_USER_TO_USER_ROLE",
       field: 'ROLE_ID'
+    },
+    role: {
+      type: DataTypes.VIRTUAL,
+      get() {
+        const userRole = this.getDataValue('UserRole');
+        if(userRole && userRole.roleGroup){
+          return userRole.roleGroup
+        }
+        return [];
+      },
+      set(value) {
+        throw new Error('임시 필드입니다.');
+      }
     }
   }, {
     sequelize,
@@ -191,5 +204,13 @@ class User extends Sequelize.Model {
     tableName: 'TB_USER'
     });
   return User;
+  }
+
+  static associate(models) {
+    models.User.belongsTo(models.UserRole, {
+      foreignKey: {
+        name: 'roleId'
+      }
+    })
   }
 }

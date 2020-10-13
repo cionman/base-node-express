@@ -43,7 +43,11 @@ class UserRole extends Sequelize.Model {
     roleGroup: {
       type: DataTypes.STRING(300),
       allowNull: true,
-      field: 'ROLE_GROUP'
+      field: 'ROLE_GROUP',
+      get() {
+        const val = this.getDataValue('roleGroup')
+        return val ? val.split(',') : ""
+      }
     },
     /*
     // 임시 주석 : Cyclic dependency found. TB_USER is dependent of itself.

@@ -14,6 +14,13 @@ module.exports = () => {
         try {
             const exUser = await User.findOne({
                 where: { kakaoCode: profile.id },
+                include: [
+                    {
+                        model: UserRole,
+                        attributes: ["roleName", "roleGroup"],
+                        required:false
+                    }
+                ]
             });
             if (exUser) {
                 done(null, exUser);
