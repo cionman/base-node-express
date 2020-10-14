@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "npx nodemon server.js -e ejs,js,css,html,jpg,png,scss",
-    "test": "jest"
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
