@@ -3,6 +3,7 @@
 const request = require("supertest");
 const { init } = require('../app')
 const cheerio = require('cheerio');
+const {configs} = require('../common/config')
 
 /*
 컨트롤러 테스트
@@ -13,7 +14,7 @@ https://jestjs.io/docs/en/setup-teardown
 let app;
 
 beforeAll(async () => {
-    console.log('===== before all =====')
+    console.log('===== before all ===== : ' + configs.NODE_ENV)
     app = await init()
 });
 

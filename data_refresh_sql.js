@@ -1,18 +1,18 @@
 const mysql = require('mysql2')
 const fs = require('fs')
-require("dotenv").config();
+const { configs } = require('./common/config')
 
-if(process.env.NODE_ENV !== 'development') process.exit(1);
+if(configs.NODE_ENV !== 'development' && NODE_ENV !== 'test') process.exit(1);
 
 const dropSql = fs.readFileSync('./model/sql/mysql_drop.sql', {encoding:'utf8'})
 const ddlSql = fs.readFileSync('./model/sql/mysql_ddl.sql', {encoding:'utf8'})
 const dataSql = fs.readFileSync('./model/sql/mysql_data.sql', {encoding:'utf8'})
 
 const connection = mysql.createConnection({
-    host : process.env.DB_HOST,
-    user : process.env.DB_USER,
-    password : process.env.DB_PASSWORD,
-    database : process.env.DATABASE,
+    host : configs.DB_HOST,
+    user : configs.DB_USER,
+    password : configs.DB_PASSWORD,
+    database : configs.DATABASE,
     multipleStatements: true
 })
 

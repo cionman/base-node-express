@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "npx nodemon server.js -e ejs,js,css,html,jpg,png,scss",
+    "start": "npx cross-env NODE_ENV=development nodemon server.js -e ejs,js,css,html,jpg,png,scss",
     "test": "jest",
     "coverage": "jest --coverage"
   },
@@ -30,6 +30,7 @@
     "compression": "^1.7.4",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
+    "cross-env": "7.0.2",
     "csurf": "^1.11.0",
     "dotenv": "^6.2.0",
     "express": "^4.17.1",

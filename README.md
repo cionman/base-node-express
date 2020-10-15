@@ -7,6 +7,19 @@
 - test : 테스트 코드 디렉토리
 - 위 6개 디렉토리 이상 늘리지 않는 방향으로 작업
 
+## 개발환경 초기 세팅
+
+- mysql database `base_node`, `base_node_test` 생성
+- mongodb database `base` 생성
+- `.env`, `.env.test` 파일을 `.env.sample` 파일을 참조하여 생성
+
+- 아래 명령어 실행
+
+```
+npm install
+npm install -g nodemon cross-env
+```
+
 ## 개발 서버 실행
 
 - 노드 서버 구동 후 `gulp watch` 를 해야한다.
@@ -38,6 +51,8 @@ node data_refresh_nosql.js
 ```
 
 ## 운영서버 설치
+
+- NODE_ENV=production 환경변수 추가, 운영체제에 맞게..
 
 ```
 npm install

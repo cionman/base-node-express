@@ -1,8 +1,8 @@
 const crypto = require('crypto')
 const bcrypt = require('bcrypt');
-require("dotenv").config();
-const key = process.env.KEY
-const iv = process.env.IV
+const { configs } = require('../config')
+const key = configs.KEY
+const iv = configs.IV
 const saltRounds = 11;
 
 module.exports = {

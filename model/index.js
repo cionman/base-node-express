@@ -4,15 +4,15 @@ const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || 'development';
+const { configs } = require('../common/config')
+const env = configs.NODE_ENV || 'development';
 const cls = require('cls-hooked');
 const namespace = cls.createNamespace('base-node-express');
-require("dotenv").config();
 Sequelize.useCLS(namespace);
 
 const db = {};
-let sequelize = new Sequelize(process.env.DATABASE, process.env.DB_USER, process.env.DB_PASSWORD, {
-  host: process.env.DB_HOST,
+let sequelize = new Sequelize(configs.DATABASE, configs.DB_USER, configs.DB_PASSWORD, {
+  host: configs.DB_HOST,
   dialect: 'mysql',
   timezone: '+09:00', //한국 시간 셋팅,
   retry: {

@@ -1,11 +1,12 @@
 const { MongoClient } = require("mongodb");
 const { tree } = require('./common/util/func')
 const { encryptAES256 } = require('./common/util/crypto.util')
-require("dotenv").config();
-const {NODE_ENV, MONGO_DATABASE, MONGO_DB_USER, MONGO_DB_PASSWORD, MONGO_DB_HOST} = process.env
+const path = require('path')
+const { configs } = require('./common/config')
+const {NODE_ENV, MONGO_DATABASE, MONGO_DB_USER, MONGO_DB_PASSWORD, MONGO_DB_HOST} = configs
 const uri = `mongodb://${MONGO_DB_USER}:${MONGO_DB_PASSWORD}@${MONGO_DB_HOST}:27017/?poolSize=20&w=majority`
 
-if(NODE_ENV !== 'development') process.exit(1);
+if(NODE_ENV !== 'development' && NODE_ENV !== 'test') process.exit(1);
 
 const client = new MongoClient(uri);
 

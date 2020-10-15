@@ -18,8 +18,7 @@ const csrf = require('csurf')
 const mongoConnect = require('./schema')
 const passport = require('passport')
 const passportConfig = require('./common/passport')
-
-require("dotenv").config();
+const { configs } = require('./common/config');
 
 class ApiServer extends http.Server {
   constructor() {
@@ -75,7 +74,7 @@ class ApiServer extends http.Server {
     setTimeout(() => {
       console.error('비정상적인 종료(강제종료 합니다)')
       process.exit(1)
-    }, process.env.SHUTDOWN_TIME_OUT).unref()
+    }, configs.SHUTDOWN_TIME_OUT).unref()
 
     if(this.currentConns.size > 0) {
       console.log(`현재 동시접속중인 연결(${this.currentConns.size})을 대기중입니다.`)
@@ -107,7 +106,7 @@ class ApiServer extends http.Server {
   }
 
   setPort() {
-    this.app.set("port", process.env.PORT || 8001); //포트 설정
+    this.app.set("port", configs.PORT || 8001); //포트 설정
   }
 
   dbConnection(){
@@ -145,30 +144,30 @@ class ApiServer extends http.Server {
     this.app.use(helmet({
       contentSecurityPolicy: false,
     })); //보안 모듈
-    if(process.env.NODE_ENV === 'production'){
+    if(configs.NODE_ENV === 'production'){
       this.app.use(morgan("combined")); //로깅
     }else{
       this.app.use(morgan("dev")); //로깅
     }
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: false }));
-    this.app.use(cookieParser(process.env.COOKIE_SECRET)); //쿠키
+    this.app.use(cookieParser(configs.COOKIE_SECRET)); //쿠키
     this.app.use(
         session({
           //세션
           resave: false,
           saveUninitialized: false,
-          secret: process.env.COOKIE_SECRET,
+          secret: configs.COOKIE_SECRET,
           cookie: {
             httpOnly: true,
             secure: false,
           },
           store: new MySQLStore({
-            host: process.env.DB_HOST,
+            host: configs.DB_HOST,
             port: 3306,
-            user: process.env.DB_USER,
-            password: process.env.DB_PASSWORD,
-            database: process.env.DATABASE,
+            user: configs.DB_USER,
+            password: configs.DB_PASSWORD,
+            database: configs.DATABASE,
             expiration: 8 * 60 * 60 * 1000
           }),
         })

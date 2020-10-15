@@ -1,8 +1,9 @@
 'use strict'
 
 const { init } = require('./app')
-const env = process.env.NODE_ENV
-const port = process.env.PORT
+const { configs } = require('./common/config')
+const env = configs.NODE_ENV
+const port = configs.PORT
 
 const main = async () => {
   const server = await init()
