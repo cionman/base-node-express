@@ -4,7 +4,7 @@ const puppeteer = require('puppeteer');
  * @param fn
  * @returns {function(*=, *=, *=): void}
  */
-module.exports.wrapAsync = function (fn) {
+exports.wrapAsync = function (fn) {
     return function (req, res, next) {
         fn(req, res, next).catch(next)
     }
@@ -16,7 +16,7 @@ module.exports.wrapAsync = function (fn) {
  * @param fn
  * @returns {Promise<void>}
  */
-module.exports.wrapPuppeteer = async function (fn) {
+exports.wrapPuppeteer = async function (fn) {
     // 브라우저 열기
     const browser = await puppeteer.launch({
         //headless: false //false인 경우 브라우저가 노출된다.
@@ -34,12 +34,6 @@ module.exports.wrapPuppeteer = async function (fn) {
 }
 
 
-const tree  = (o,m=o,v='') => {
-    for(e in o){
-        if(typeof o!=='object'){console.log(v+'┗╸'+o);return}
-        Array.isArray(o)?!Array.isArray(o[e])?console.log(v+(o.length===1||o[e]===o[o.length-1]?'┗╸':'┣╸')+o[e]):tree(o[e],m,v+(o.length===1||o[e]===o[o.length-1]?' '.repeat(o[e].toString.length+1):'┃'+' '.repeat(e.length))):(console.log(v+(e===Object.keys(m)[0]?'┏╸':Object.keys(o).length===1||Object.keys(o)[Object.keys(o).length-1]===e?'┗╸':'┣╸')+e),tree(typeof o[e]!=='object'?String(o[e]):o[e],m,v+(Object.keys(o).length===1||Object.keys(o)[Object.keys(o).length-1]===e?' '.repeat(e.length+1):'┃'+' '.repeat(e.length))))
-    }
-}
 
 /**
  * 객체 트리 구조 확인
@@ -47,6 +41,28 @@ const tree  = (o,m=o,v='') => {
  * @param m
  * @param v
  */
-module.exports.tree = tree
+exports.tree = (o,m=o,v='') => {
+    for(e in o){
+        if(typeof o!=='object'){console.log(v+'┗╸'+o);return}
+        Array.isArray(o)?!Array.isArray(o[e])?console.log(v+(o.length===1||o[e]===o[o.length-1]?'┗╸':'┣╸')+o[e]):tree(o[e],m,v+(o.length===1||o[e]===o[o.length-1]?' '.repeat(o[e].toString.length+1):'┃'+' '.repeat(e.length))):(console.log(v+(e===Object.keys(m)[0]?'┏╸':Object.keys(o).length===1||Object.keys(o)[Object.keys(o).length-1]===e?'┗╸':'┣╸')+e),tree(typeof o[e]!=='object'?String(o[e]):o[e],m,v+(Object.keys(o).length===1||Object.keys(o)[Object.keys(o).length-1]===e?' '.repeat(e.length+1):'┃'+' '.repeat(e.length))))
+    }
+}
+
+exports.getPagination = (page, size) => {
+    const limit = size ? +size : 10; // 기본 10
+    const offset = page ? page * limit : 0;
+
+    return { limit, offset };
+};
+
+exports.getPagingData = (data, page, limit) => {
+    const { count: totalItems, rows: contents } = data;
+    const currentPage = page ? +page : 0;
+    const totalPages = Math.ceil(totalItems / limit);
+
+    return { totalItems, contents, totalPages, currentPage };
+};
+
+
 
 

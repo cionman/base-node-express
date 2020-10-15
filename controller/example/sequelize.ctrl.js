@@ -3,8 +3,9 @@
 const {Router} = require('express');
 const router = Router();
 const models = require('../../model');
-const { tree, wrapAsync } = require('../../common/util/func');
+const { getPagination, getPagingData, tree, wrapAsync } = require('../../common/util/func');
 const { Op } = require("sequelize");
+
 function testMiddleWare(req, res, next) {
     console.log('첫번째 미들웨어');
     next();
@@ -246,8 +247,13 @@ router.get('/function', wrapAsync(async (req, res) => {
 }));
 
 router.get('/paging', wrapAsync(async (req, res) => {
+
     /*
-     paging 에 필요한 전체 count 수와 리스트 10개를 포함한다.
+        http://localhost:8001/example/sequelize/paging/?page=1&size=5
+     */
+
+    /*
+        findAndCountAll메소드는 paging 에 필요한 전체 count 수와 리스트 10개를 포함한다.
      {
           "count": 20, // 전체 카운트
           "rows": [
@@ -255,15 +261,20 @@ router.get('/paging', wrapAsync(async (req, res) => {
           ]
      */
 
+
+    const { page, size } = req.query;
+    const { limit, offset } = getPagination(page, size)
+
     const boards = await models.Board.findAndCountAll(
         {
             where: {
                 content: { [Op.like] : '%관리자 리스트%' }
             },
-            offset: 10,
-            limit: 10
+            offset: offset,
+            limit: limit
         })
-    res.json(boards);
+    const pagingData =  getPagingData(boards, page, limit)
+    res.json(pagingData);
 
 }));
 
