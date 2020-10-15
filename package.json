@@ -6,7 +6,10 @@
   "scripts": {
     "start": "npx cross-env NODE_ENV=development nodemon server.js -e ejs,js,css,html,jpg,png,scss",
     "test": "jest",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "data-init": "node data_refresh_nosql.js && node data_refresh_sql.js",
+    "data-init-sql": "node data_refresh_sql.js",
+    "data-init-nosql": "node data_refresh_nosql.js"
   },
   "repository": {
     "type": "git",

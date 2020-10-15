@@ -41,13 +41,25 @@ gulp watch
 - mysql 데이터 초기화
 
 ```
-node data_refresh_sql.js
+npm run data-init-sql
 ```
 
 - mongodb 데이터 초기화
 
 ```
-node data_refresh_nosql.js
+npm run data-init-nosql
+```
+
+- 모두 초기화
+
+```
+npm run data-init
+```
+
+## 테스트 실행
+
+```
+npm test
 ```
 
 ## 운영서버 설치
