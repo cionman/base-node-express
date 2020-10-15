@@ -236,7 +236,6 @@ router.get('/subquery2', wrapAsync(async (req, res) => {
 
 }));
 
-
 router.get('/function', wrapAsync(async (req, res) => {
     const boards = await models.Board.findAll({
         attributes: ["boardId", [models.sequelize.fn('COUNT', models.sequelize.col('REG_ID')), 'userCnt']],
@@ -245,6 +244,30 @@ router.get('/function', wrapAsync(async (req, res) => {
     res.json(boards);
 
 }));
+
+router.get('/paging', wrapAsync(async (req, res) => {
+    /*
+     paging 에 필요한 전체 count 수와 리스트 10개를 포함한다.
+     {
+          "count": 20, // 전체 카운트
+          "rows": [
+             ..게시판 객체 10개
+          ]
+     */
+
+    const boards = await models.Board.findAndCountAll(
+        {
+            where: {
+                content: { [Op.like] : '%관리자 리스트%' }
+            },
+            offset: 10,
+            limit: 10
+        })
+    res.json(boards);
+
+}));
+
+
 
 router.get('/insert', wrapAsync(async (req, res) => {
     const boards = await models.Board.create({
