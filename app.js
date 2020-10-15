@@ -18,7 +18,9 @@ const csrf = require('csurf')
 const mongoConnect = require('./schema')
 const passport = require('passport')
 const passportConfig = require('./common/passport')
-const { configs } = require('./common/config');
+const { configs } = require('./common/config')
+const schedule = require('node-schedule')
+const sleep = require('thread-sleep')
 
 class ApiServer extends http.Server {
   constructor() {
@@ -55,6 +57,9 @@ class ApiServer extends http.Server {
 
     // 라우팅
     this.setRouting();
+
+    //스케줄 잡 등록
+    this.setSchedulingJob();
 
     // 에러처리(가장 아래에 있어야함)
     this.errorHandler();
@@ -119,8 +124,9 @@ class ApiServer extends http.Server {
           console.log('Connection has been established successfully.');
           //테이블 동기화
           // This will run .sync() only if database name ends with '_test'
-
-          //return db.sequelize.sync({ alter: true, match: /_test$/ });
+          if(configs.NODE_ENV === 'development'){
+            //return db.sequelize.sync({ alter: true });
+          }
         })
         .then(() => {
           console.log('데이터베이스 연결 완료');
@@ -220,6 +226,13 @@ class ApiServer extends http.Server {
     })
     //컨트롤러
     this.app.use(require("./controller"));
+  }
+
+
+  setSchedulingJob(){
+    schedule.scheduleJob('0 */10 * * * *', function(){
+      console.log('10분마다 실행');
+    });
   }
 
   errorHandler() {
