@@ -50,6 +50,12 @@ exports.tree = (o, m = o, v = '') => {
     }
 };
 
+/**
+ *  페이징에 사용되는 page, size 파라미터를 받아 sequelize에 사용할 limit, offset 값을 추출
+ * @param page
+ * @param size
+ * @returns {{offset: number, limit: number}}
+ */
 exports.getPagination = (page, size) => {
     const limit = size ? +size : 10; // 기본 10
     const offset = page ? page * limit : 0;
@@ -57,6 +63,13 @@ exports.getPagination = (page, size) => {
     return { limit, offset };
 };
 
+/**
+ * 페이징 쿼리 데이터를 페이징에 사용할 변수가 포함된 객체로
+ * @param data
+ * @param page
+ * @param limit
+ * @returns {{totalItems: *, contents: *, totalPages: number, currentPage: number}}
+ */
 exports.getPagingData = (data, page, limit) => {
     const { count: totalItems, rows: contents } = data;
     const currentPage = page ? +page : 0;
@@ -64,6 +77,14 @@ exports.getPagingData = (data, page, limit) => {
 
     return { totalItems, contents, totalPages, currentPage };
 };
+
+
+/**
+ * Array.prototype.sort 에 객체키를 기준으로 정렬할 비교 함수
+ * @param key
+ * @returns {function(*, *): number}
+ */
+exports.compare = (key) => (a, b) => (a[key] > b[key] ? 1 : (a[key] < b[key] ? -1 : 0))
 
 
 
