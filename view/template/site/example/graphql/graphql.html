@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
 </head>
 <body>
 GraphQL example
 <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+		src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
 <script>
     // axios.get( `http://localhost:4000/graphql`,{
     //             params : {
@@ -20,14 +20,14 @@ GraphQL example
     //           console.log(res);
     //         })
 
-    axios.post( `http://localhost:8001/graphql`,{
+    axios.post(`http://localhost:8001/graphql`, {
         "query": "mutation addProduct($input: ProductInput) { addProduct(input: $input) { id } }",
-        "variables": { "input" : { "name" : "5번째상품" , "price" : 3000 , "description" : "후후후" } },
+        "variables": { "input": { "name": "5번째상품", "price": 3000, "description": "후후후" } },
         "operationName": null
 
-    }).then(function(res){
+    }).then(function (res) {
         console.log(res);
-    })
+    });
 
 </script>
 

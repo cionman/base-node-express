@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const { isLogin, isNotLogin } = require('../common/util/middleware');
 

@@ -6,11 +6,13 @@ body {
   font-family: $notosanskr;
   color: $co_default;
 }
+
 * {
   line-height: 1;
   margin: 0;
   padding: 0;
 }
+
 ul,
 ol,
 dl,
@@ -21,23 +23,29 @@ li {
   padding: 0;
   margin: 0;
 }
+
 a {
   display: inline-block;
+
   &:hover {
     text-decoration: none;
     color: $co_default;
   }
 }
+
 img {
   display: inline-block;
   vertical-align: top;
 }
+
 figure {
   margin: 0;
 }
+
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
+
   &::-ms-expand {
     display: none;
   }

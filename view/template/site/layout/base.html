@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="_csrf_token" content="{{csrfToken}}">
-    <title>{% block title %}{% endblock %}</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    {% include "site/layout/fragment/css.html" %}
-    {% block pagecss %}{% endblock %}
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="_csrf_token" content="{{csrfToken}}">
+	<title>{% block title %}{% endblock %}</title>
+	<!-- Tell the browser to be responsive to screen width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	{% include "site/layout/fragment/css.html" %}
+	{% block pagecss %}{% endblock %}
 </head>
 <body>
 <div class="container">
-    {% include "site/layout/fragment/header.html" %}
-    {% block content %}{% endblock %}
-    {% include "site/layout/fragment/footer.html" %}
+	{% include "site/layout/fragment/header.html" %}
+	{% block content %}{% endblock %}
+	{% include "site/layout/fragment/footer.html" %}
 </div>
 {% include "site/layout/fragment/js.html" %}
 {% block pagejs %}{% endblock %}

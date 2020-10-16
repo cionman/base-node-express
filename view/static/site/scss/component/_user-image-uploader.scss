@@ -3,9 +3,11 @@
   font-size: 16px;
   max-width: 380px;
   background-color: #fff;
+
   .uploader-label {
     background-color: #f8f9fc;
   }
+
   .uploader-uploaded-item {
     display: block;
     position: relative;
@@ -13,32 +15,39 @@
     padding: 10px;
     word-break: break-all;
     border-top: 1px solid #ddd;
+
     &.uploader-empty-item {
       display: none;
     }
+
     &::after {
-      content:'';
+      content: '';
       display: table;
       clear: both;
     }
   }
+
   .uploader-btn-delete {
     float: left;
     display: block;
     margin-left: 10px;
   }
+
   .uploader-form {
     display: block;
     padding: 10px;
     min-height: 101px;
     border-top: 1px solid #ddd;
+
     .uploader-size-limit {
       padding: 5px;
     }
+
     .uploader-condition {
       padding: 5px 0;
     }
   }
+
   .uploader-uploading {
     display: none;
     min-height: 101px;
@@ -49,25 +58,29 @@
       padding-top: 5px;
     }
   }
+
   &.uploading {
     .uploader-form {
       display: none;
     }
+
     .uploader-uploading {
       display: block;
     }
   }
+
   &.uploader-max,
   &.uploader-init {
     .uploader-form,
-    .uploader-uploaded-item-skel
-    {
+    .uploader-uploaded-item-skel {
       display: none;
     }
   }
+
   .size-guide {
     background-color: #f8f9fc;
   }
+
   .uploader-preview {
     float: left;
     display: block;

@@ -1,9 +1,9 @@
-'use strict'
+'use strict';
 
 const passport = require('passport');
 const KakaoStrategy = require('passport-kakao').Strategy;
 const { User } = require('../../model');
-const { configs } = require('../config')
+const { configs } = require('../config');
 
 module.exports = () => {
     passport.use(new KakaoStrategy({
@@ -18,7 +18,7 @@ module.exports = () => {
                     {
                         model: UserRole,
                         attributes: ["roleName", "roleGroup"],
-                        required:false
+                        required: false
                     }
                 ]
             });

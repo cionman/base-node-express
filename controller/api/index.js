@@ -1,7 +1,7 @@
-'use strict'
+'use strict';
 
 const { Router } = require('express');
-const router = Router()
+const router = Router();
 
 router.use('/auth', require('./auth.ctrl'));
 

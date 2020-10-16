@@ -7,6 +7,7 @@
     background: $white;
     padding: 30px;
   }
+
   h2 {
     margin: 0 0 15px;
   }
@@ -16,18 +17,22 @@
     padding-bottom: 15px;
     text-align: center;
   }
+
   .form-control, .btn {
     min-height: 50px;
     border-radius: 2px;
   }
+
   .login-btn {
     font-size: 15px;
     font-weight: bold;
   }
+
   .or-seperator {
     margin: 20px 0 10px;
     text-align: center;
     border-top: 1px solid #ccc;
+
     i {
       padding: 0 10px;
       background: #f7f7f7;
@@ -36,18 +41,21 @@
       z-index: 1;
     }
   }
+
   .social-btn .btn {
     margin: 10px 0;
     font-size: 15px;
     text-align: left;
     padding-top: 12px;
   }
+
   .social-btn .btn i {
     float: left;
-    margin: 4px 15px  0 5px;
+    margin: 4px 15px 0 5px;
     min-width: 15px;
   }
-  .input-group-addon .fa{
+
+  .input-group-addon .fa {
     font-size: 18px;
   }
 

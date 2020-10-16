@@ -3,14 +3,16 @@
 
 {% block content -%}
 <form action="?_csrf={{csrfToken}}" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="_csrf" value="{{csrfToken}}">
-    <table class="table table-bordered">
-        <tr>
-            <th>파일</th>
-            <td><input type="file" name="multiFile" class="form-control" multiple value=""/></td>
-        </tr>
-    </table>
-    <button class="btn btn-primary">작성하기</button>
+	<input type="hidden" name="_csrf" value="{{csrfToken}}">
+	<table class="table table-bordered">
+		<tr>
+			<th>파일</th>
+			<td>
+				<input type="file" name="multiFile" class="form-control" multiple value=""/>
+			</td>
+		</tr>
+	</table>
+	<button class="btn btn-primary">작성하기</button>
 </form>
 
 {% endblock %}

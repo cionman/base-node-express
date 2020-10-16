@@ -20,6 +20,7 @@
     @include make-row($gutter);
     margin-bottom: 16px;
   }
+
   &__filename {
     @include make-col-ready($gutter);
     width: 70%;
@@ -85,10 +86,12 @@
     .uploader__form {
       display: none;
     }
+
     .uploader__uploading {
       display: block;
     }
   }
+
   &.uploader--init {
     .uploader__uploading {
       display: none;

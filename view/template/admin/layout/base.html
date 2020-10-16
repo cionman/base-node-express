@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="_csrf_token" content="{{csrfToken}}">
-    <title>{% block title %}{% endblock %}</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    {% include "admin/layout/fragment/css.html" %}
-    {% block pagecss %}{% endblock %}
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="_csrf_token" content="{{csrfToken}}">
+	<title>{% block title %}{% endblock %}</title>
+	<!-- Tell the browser to be responsive to screen width -->
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	{% include "admin/layout/fragment/css.html" %}
+	{% block pagecss %}{% endblock %}
 </head>
 <body class="sidebar-mini">
 <div class="wrapper">
-    {% include "admin/layout/fragment/header.html" %}
-    {% include "admin/layout/fragment/main-sidebar.html" %}
-    {% block content %}{% endblock %}
-    {% include "admin/layout/fragment/footer.html" %}
-    {% include "admin/layout/fragment/aside.html" %}
-    <div class="control-sidebar-bg"></div>
+	{% include "admin/layout/fragment/header.html" %}
+	{% include "admin/layout/fragment/main-sidebar.html" %}
+	{% block content %}{% endblock %}
+	{% include "admin/layout/fragment/footer.html" %}
+	{% include "admin/layout/fragment/aside.html" %}
+	<div class="control-sidebar-bg"></div>
 </div>
 {% include "admin/layout/fragment/js.html" %}
 {% block pagejs %}{% endblock %}

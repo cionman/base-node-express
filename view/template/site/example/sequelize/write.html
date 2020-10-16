@@ -3,55 +3,65 @@
 
 {% block content -%}
 <div class="content-wrapper">
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">상품 관리</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </section>
+	<section class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1 class="m-0 text-dark">상품 관리</h1>
+				</div>
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item">
+							<a href="#">Home</a>
+						</li>
+						<li class="breadcrumb-item active">Dashboard</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</section>
 
-    <!-- Main content -->
-    <section class="content">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
+	<!-- Main content -->
+	<section class="content">
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-body">
 
-                        <form action="" method="post">
-                            <input type="hidden" name="_csrf" value="{{csrfToken}}">
-                            <table class="table table-bordered">
-                                <tr>
-                                    <th>제품명</th>
-                                    <td><input type="text" name="name" class="form-control" value="{{ product.name }}"/></td>
-                                </tr>
-                                <tr>
-                                    <th>가격</th>
-                                    <td><input type="text" name="price" class="form-control" value="{{ product.price }}"/></td>
-                                </tr>
-                                <tr>
-                                    <th>설명</th>
-                                    <td><input type="text" name="description" class="form-control" value="{{ product.description }}"/></td>
-                                </tr>
-                            </table>
-                            <button class="btn btn-primary">작성하기</button>
-                        </form>
+						<form action="" method="post">
+							<input type="hidden" name="_csrf" value="{{csrfToken}}">
+							<table class="table table-bordered">
+								<tr>
+									<th>제품명</th>
+									<td>
+										<input type="text" name="name" class="form-control" value="{{ product.name }}"/>
+									</td>
+								</tr>
+								<tr>
+									<th>가격</th>
+									<td>
+										<input type="text" name="price" class="form-control"
+											   value="{{ product.price }}"/>
+									</td>
+								</tr>
+								<tr>
+									<th>설명</th>
+									<td>
+										<input type="text" name="description" class="form-control"
+											   value="{{ product.description }}"/>
+									</td>
+								</tr>
+							</table>
+							<button class="btn btn-primary">작성하기</button>
+						</form>
 
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- /.content -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 

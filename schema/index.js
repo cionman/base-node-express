@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const { configs } = require('../common/config')
-const {NODE_ENV, MONGO_DATABASE, MONGO_DB_USER, MONGO_DB_PASSWORD, MONGO_DB_HOST} = configs
+const { configs } = require('../common/config');
+const { NODE_ENV, MONGO_DATABASE, MONGO_DB_USER, MONGO_DB_PASSWORD, MONGO_DB_HOST } = configs;
 
 const connect = () => {
     if (NODE_ENV !== 'production') {

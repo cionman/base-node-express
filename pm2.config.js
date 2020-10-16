@@ -8,7 +8,7 @@ module.exports = {
             watch: true, // 파일이 변경되면 자동으로 재실행 (true || false)
             env: {
                 "NODE_ENV": "production",
-                "PORT" : 5001,
+                "PORT": 5001,
             },
         }
     ]

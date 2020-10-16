@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const express = require('express');
 const passport = require('passport');
@@ -10,12 +10,12 @@ const { User } = require('../model');
 const router = express.Router();
 
 router.get('/login', (req, res) => {
-    res.render('site/login.html', { message : req.flash('message')})
-})
+    res.render('site/login.html', { message: req.flash('message') });
+});
 
 router.get('/join', (req, res) => {
-    res.render('site/join.html')
-})
+    res.render('site/join.html');
+});
 
 router.get('/logout', isLogin, (req, res) => {
     req.logout();
@@ -48,7 +48,7 @@ router.post('/login', isNotLogin, (req, res, next) => {
             return next(authError);
         }
         if (!user) {
-            req.flash('message', info.message)
+            req.flash('message', info.message);
             return res.redirect(`/login?error`);
         }
         return req.login(user, (loginError) => {
@@ -60,7 +60,6 @@ router.post('/login', isNotLogin, (req, res, next) => {
         });
     })(req, res, next); // 미들웨어 내의 미들웨어에는 (req, res, next)를 붙입니다.
 });
-
 
 
 module.exports = router;

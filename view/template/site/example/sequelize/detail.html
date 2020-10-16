@@ -3,55 +3,55 @@
 
 {% block content -%}
 <div class="content-wrapper">
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">상품 관리</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </section>
+	<section class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1 class="m-0 text-dark">상품 관리</h1>
+				</div>
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item">
+							<a href="#">Home</a>
+						</li>
+						<li class="breadcrumb-item active">Dashboard</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</section>
 
-    <!-- Main content -->
-    <section class="content">
-        <!-- /.box -->
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                {{ product.name }}
-                            </div>
-                            <div class="panel-body">
-                                <div style="padding-bottom: 10px">
-                                    작성일 : {{ product.dateFormat( product.createdAt ) }}
-                                </div>
+	<!-- Main content -->
+	<section class="content">
+		<!-- /.box -->
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								{{ product.name }}
+							</div>
+							<div class="panel-body">
+								<div style="padding-bottom: 10px">
+									작성일 : {{ product.dateFormat( product.createdAt ) }}
+								</div>
 
-                                {{ product.description }}
+								{{ product.description }}
 
-                            </div>
-                        </div>
+							</div>
+						</div>
 
-                        <a href="/example/sequelize/products" class="btn btn-default">목록으로</a>
-                        <a href="/example/sequelize/products/edit/{{ product.id }}" class="btn btn-primary">수정</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- /.content -->
+						<a href="/example/sequelize/products" class="btn btn-default">목록으로</a>
+						<a href="/example/sequelize/products/edit/{{ product.id }}" class="btn btn-primary">수정</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-
-
 
 
 {% endblock %}

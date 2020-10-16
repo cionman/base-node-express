@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 
-const {Router} = require('express');
+const { Router } = require('express');
 const router = Router();
 const models = require('../../model');
 const { getPagination, getPagingData, tree, wrapAsync } = require('../../common/util/func');
@@ -39,18 +39,18 @@ router.get('/transaction/example', wrapAsync(async (req, res) => {
                 description: product.description + ' 내용 수정 업데이트'
             },
             {
-                where: {id: product.id}
+                where: { id: product.id }
             }
-        )
+        );
         const result = await models.Products.findByPk(product.id);
-        res.json(result)
-    })
+        res.json(result);
+    });
 }));
 
 
 router.get('/products', wrapAsync(async (_, res) => {
     const products = await models.Products.findAll({});
-    res.render('site/example/sequelize/products.html', {products, message: "<h1>hello</h1>"});
+    res.render('site/example/sequelize/products.html', { products, message: "<h1>hello</h1>" });
 }));
 
 router.get('/products/write', (_, res) => {
@@ -75,13 +75,13 @@ router.post('/products/write', wrapAsync(async (req, res) => {
 
 router.get('/products/detail/:id', wrapAsync(async (req, res) => {
     const product = await models.Products.findByPk(req.params.id);
-    res.render('site/example/sequelize/detail.html', {product: product})
+    res.render('site/example/sequelize/detail.html', { product: product });
 }));
 
 router.get('/products/edit/:id', wrapAsync(async (req, res) => {
     //기존에 폼에 value안에 값을 셋팅하기 위해 만든다.
-    const product = await models.Products.findByPk(req.params.id)
-    res.render('site/example/sequelize/write.html', {product: product});
+    const product = await models.Products.findByPk(req.params.id);
+    res.render('site/example/sequelize/write.html', { product: product });
 }));
 
 router.post('/products/edit/:id', wrapAsync(async (req, res) => {
@@ -92,10 +92,10 @@ router.post('/products/edit/:id', wrapAsync(async (req, res) => {
             description: req.body.description
         },
         {
-            where: {id: req.params.id}
+            where: { id: req.params.id }
         }
-    )
-    res.redirect('/example/sequelize/products/detail/' + req.params.id)
+    );
+    res.redirect('/example/sequelize/products/detail/' + req.params.id);
 }));
 
 router.get('/products/delete/:id', wrapAsync(async (req, res) => {
@@ -109,7 +109,7 @@ router.get('/products/delete/:id', wrapAsync(async (req, res) => {
 }));
 
 router.get('/pk/:id', wrapAsync(async (req, res) => {
-    const user = await models.User.findByPk(req.params.id)
+    const user = await models.User.findByPk(req.params.id);
     res.json(user);
 
 }));
@@ -118,15 +118,15 @@ router.get('/findone/:id', wrapAsync(async (req, res) => {
     const user = await models.User.findOne({
         attributes: ["userId", "userName", "address1"],
         where: {
-            userId: {[Op.eq]: req.params.id}
+            userId: { [Op.eq]: req.params.id }
         },
-    })
+    });
     res.json(user);
 
 }));
 
 router.get('/all', wrapAsync(async (req, res) => {
-    const users = await models.User.findAll()
+    const users = await models.User.findAll();
     res.json(users);
 
 }));
@@ -134,7 +134,7 @@ router.get('/all', wrapAsync(async (req, res) => {
 router.get('/select-column', wrapAsync(async (req, res) => {
     const users = await models.User.findAll({
         attributes: ["userId", "address1"]
-    })
+    });
     res.json(users);
 
 }));
@@ -142,10 +142,10 @@ router.get('/select-column', wrapAsync(async (req, res) => {
 router.get('/where1', wrapAsync(async (req, res) => {
     const users = await models.User.findAll({
         attributes: ["userId", "userName", "address1"],
-        where : {
-            userId: { [Op.gt] : 10 }
+        where: {
+            userId: { [Op.gt]: 10 }
         },
-    })
+    });
     res.json(users);
 
 }));
@@ -154,14 +154,14 @@ router.get('/where1', wrapAsync(async (req, res) => {
 router.get('/limitoffset', wrapAsync(async (req, res) => {
     const users = await models.User.findAll({
         attributes: ["userId", "userName", "address1"],
-        where : {
-            userId: { [Op.gt] : 10 }
+        where: {
+            userId: { [Op.gt]: 10 }
         },
-        order:[['address1', 'asc'], ['userId', 'desc']],
-        limit : 5,
-        offset : 1
+        order: [['address1', 'asc'], ['userId', 'desc']],
+        limit: 5,
+        offset: 1
 
-    })
+    });
     res.json(users);
 
 }));
@@ -173,10 +173,10 @@ router.get('/innerjoin', wrapAsync(async (req, res) => {
             {
                 model: models.User,
                 attributes: ["userId", "userName"],
-                required:true //true면 innerjoin, 없거나 false면  left outerjoin
+                required: true //true면 innerjoin, 없거나 false면  left outerjoin
             }
         ]
-    })
+    });
     res.json(boards);
 
 }));
@@ -188,10 +188,10 @@ router.get('/leftjoin', wrapAsync(async (req, res) => {
             {
                 model: models.User,
                 attributes: ["userId", "userName"],
-                required:false, //true면 innerjoin false면  left outerjoin
+                required: false, //true면 innerjoin false면  left outerjoin
             }
         ]
-    })
+    });
     res.json(boards);
 
 }));
@@ -203,11 +203,11 @@ router.get('/rightjoin', wrapAsync(async (req, res) => {
             {
                 model: models.User,
                 attributes: ["userId", "userName"],
-                required:false, //true면 innerjoin false면  left outerjoin
+                required: false, //true면 innerjoin false면  left outerjoin
                 right: true, //right join
             }
         ]
-    })
+    });
     res.json(boards);
 
 }));
@@ -221,7 +221,7 @@ router.get('/subquery1', wrapAsync(async (req, res) => {
         order: [
             [models.sequelize.literal('userCnt'), 'DESC']
         ]
-    })
+    });
     res.json(boards);
 
 }));
@@ -230,9 +230,9 @@ router.get('/subquery2', wrapAsync(async (req, res) => {
     const boards = await models.Board.findAll({
         attributes: ["boardId", "title"],
         where: {
-            regId : { [Op.eq] : models.sequelize.literal(`(SELECT U.USER_ID FROM TB_USER AS U WHERE U.USER_ID = 12)`)}
+            regId: { [Op.eq]: models.sequelize.literal(`(SELECT U.USER_ID FROM TB_USER AS U WHERE U.USER_ID = 12)`) }
         }
-    })
+    });
     res.json(boards);
 
 }));
@@ -240,8 +240,8 @@ router.get('/subquery2', wrapAsync(async (req, res) => {
 router.get('/function', wrapAsync(async (req, res) => {
     const boards = await models.Board.findAll({
         attributes: ["boardId", [models.sequelize.fn('COUNT', models.sequelize.col('REG_ID')), 'userCnt']],
-        group:["boardId"]
-    })
+        group: ["boardId"]
+    });
     res.json(boards);
 
 }));
@@ -263,48 +263,47 @@ router.get('/paging', wrapAsync(async (req, res) => {
 
 
     const { page, size } = req.query;
-    const { limit, offset } = getPagination(page, size)
+    const { limit, offset } = getPagination(page, size);
 
     const boards = await models.Board.findAndCountAll(
         {
             where: {
-                content: { [Op.like] : '%관리자 리스트%' }
+                content: { [Op.like]: '%관리자 리스트%' }
             },
             offset: offset,
             limit: limit
-        })
-    const pagingData =  getPagingData(boards, page, limit)
+        });
+    const pagingData = getPagingData(boards, page, limit);
     res.json(pagingData);
 
 }));
 
 
-
 router.get('/insert', wrapAsync(async (req, res) => {
     const boards = await models.Board.create({
-        title : 'nodejs로 입력한 제목',
+        title: 'nodejs로 입력한 제목',
         content: 'nodejs로 입력한 내용'
-    })
+    });
     res.json(boards);
 }));
 
 
 router.get('/update', wrapAsync(async (req, res) => {
     const boards = await models.Board.update({
-        title : 'nodejs로 수정한 제목',
+        title: 'nodejs로 수정한 제목',
         content: 'nodejs로 수정한 내용'
     }, {
         //where: {boardId: {[Op.eq] : 1}}
         //where: {boardId: 1}
-        where: {boardId: {[Op.in] : [1, 2, 5]}}
-    })
+        where: { boardId: { [Op.in]: [1, 2, 5] } }
+    });
     res.json(boards);
 }));
 
 router.get('/delete', wrapAsync(async (req, res) => {
     const boards = await models.Board.destroy({
-        where: {boardId: 30}
-    })
+        where: { boardId: 30 }
+    });
     res.json(boards);
 }));
 
@@ -318,10 +317,8 @@ router.get('/sanitize-html', wrapAsync(async (req, res) => {
         <script>alert('hello world')</script>")
         `
     });
-    res.json(board)
+    res.json(board);
 }));
-
-
 
 
 module.exports = router;

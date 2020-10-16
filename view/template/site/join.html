@@ -4,90 +4,94 @@
 {% block content -%}
 <h3>회원가입</h3>
 <form>
-    <div class="form-group row">
-        <label for="loginId" class="col-sm-1 col-form-label">아이디</label>
-        <div class="col-sm-6">
-            <input type="text" class="form-control" id="loginId" name="loginId"
-                   data-parsley-required="true" data-parsley-maxlength="20"
-                   data-parsley-pattern="[a-zA-Z0-9]+"
-                   data-parsley-error-message="영문 및 숫자만 입력 가능합니다."
-                   placeholder="로그인 아이디">
+	<div class="form-group row">
+		<label for="loginId" class="col-sm-1 col-form-label">아이디</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" id="loginId" name="loginId"
+				   data-parsley-required="true" data-parsley-maxlength="20"
+				   data-parsley-pattern="[a-zA-Z0-9]+"
+				   data-parsley-error-message="영문 및 숫자만 입력 가능합니다."
+				   placeholder="로그인 아이디">
 
-        </div>
-        <div class="col-sm-3">
-            <button type="button" id="btnCheckId" class="btn btn-primary mb-2">아이디 중복검사</button>
-            <input type="hidden" id="hdCheckId" name="hdCheckId" data-parsley-required="true" data-parsley-equalto="#loginId" data-parsley-error-message="아이디 중복검사가 필요합니다."/>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="inputPassword" class="col-sm-1 col-form-label">비밀번호</label>
-        <div class="col-sm-6">
-            <input type="password" name="password" class="form-control" id="inputPassword" placeholder="비밀번호"
-                   data-parsley-required="true" data-parsley-password-pattern="true" data-parsley-pattern="^(?=.*[a-z])(?=.*[0-9]).{8,20}$"
-                   data-parsley-error-message="영문과 숫자를 반드시 1개이상 포함하여 8자에서 20자 이내로 입력하십시오">
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="inputPasswordConfirm" class="col-sm-1 col-form-label">비밀번호 확인</label>
-        <div class="col-sm-6">
-            <input type="password" class="form-control" id="inputPasswordConfirm" placeholder="비밀번호 확인"
-                   data-parsley-required="true" data-parsley-equalto="#inputPassword">
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="userName" class="col-sm-1 col-form-label">이름</label>
-        <div class="col-sm-6">
-            <input type="text" class="form-control" id="userName" name="userName"
-                   data-parsley-required="true" data-parsley-maxlength="20"
-                   placeholder="이름" value="">
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="userNick" class="col-sm-1 col-form-label">닉네임</label>
-        <div class="col-sm-6">
-            <input type="text" class="form-control" id="userNick" name="userNick"
-                   data-parsley-required="true" data-parsley-maxlength="20"
-                   placeholder="닉네임" value="">
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="inputEmail" class="col-sm-1 col-form-label">이메일</label>
-        <div class="col-sm-6">
-            <input type="email" name="email" class="form-control" id="inputEmail" placeholder="이메일"
-                   data-parsley-required="true" data-parsley-type="email" data-parsley-maxlength="100" value="">
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="phone1" class="col-sm-1 col-form-label">연락처</label>
-        <div class="col-sm-1">
-            <select class="form-control" id="phone1" name="phone1">
-                <option>010</option>
-                <option>011</option>
-                <option>016</option>
-                <option>017</option>
-                <option>019</option>
-            </select>
-        </div>
-        <span class="mt-2">-</span>
-        <div class="col-sm-2">
-            <input type="number" class="form-control" id="phone2" name="phone2"
-                   data-parsley-required="true" data-parsley-maxlength="4" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==4){return false;}">
-        </div>
-        <span class="mt-2">-</span>
-        <div class="col-sm-2">
-            <input type="number" class="form-control" id="phone3" name="phone3"
-                   data-parsley-required="true" data-parsley-maxlength="4" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==4){return false;}">
-        </div>
-    </div>
+		</div>
+		<div class="col-sm-3">
+			<button type="button" id="btnCheckId" class="btn btn-primary mb-2">아이디 중복검사</button>
+			<input type="hidden" id="hdCheckId" name="hdCheckId" data-parsley-required="true"
+				   data-parsley-equalto="#loginId" data-parsley-error-message="아이디 중복검사가 필요합니다."/>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="inputPassword" class="col-sm-1 col-form-label">비밀번호</label>
+		<div class="col-sm-6">
+			<input type="password" name="password" class="form-control" id="inputPassword" placeholder="비밀번호"
+				   data-parsley-required="true" data-parsley-password-pattern="true"
+				   data-parsley-pattern="^(?=.*[a-z])(?=.*[0-9]).{8,20}$"
+				   data-parsley-error-message="영문과 숫자를 반드시 1개이상 포함하여 8자에서 20자 이내로 입력하십시오">
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="inputPasswordConfirm" class="col-sm-1 col-form-label">비밀번호 확인</label>
+		<div class="col-sm-6">
+			<input type="password" class="form-control" id="inputPasswordConfirm" placeholder="비밀번호 확인"
+				   data-parsley-required="true" data-parsley-equalto="#inputPassword">
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="userName" class="col-sm-1 col-form-label">이름</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" id="userName" name="userName"
+				   data-parsley-required="true" data-parsley-maxlength="20"
+				   placeholder="이름" value="">
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="userNick" class="col-sm-1 col-form-label">닉네임</label>
+		<div class="col-sm-6">
+			<input type="text" class="form-control" id="userNick" name="userNick"
+				   data-parsley-required="true" data-parsley-maxlength="20"
+				   placeholder="닉네임" value="">
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="inputEmail" class="col-sm-1 col-form-label">이메일</label>
+		<div class="col-sm-6">
+			<input type="email" name="email" class="form-control" id="inputEmail" placeholder="이메일"
+				   data-parsley-required="true" data-parsley-type="email" data-parsley-maxlength="100" value="">
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="phone1" class="col-sm-1 col-form-label">연락처</label>
+		<div class="col-sm-1">
+			<select class="form-control" id="phone1" name="phone1">
+				<option>010</option>
+				<option>011</option>
+				<option>016</option>
+				<option>017</option>
+				<option>019</option>
+			</select>
+		</div>
+		<span class="mt-2">-</span>
+		<div class="col-sm-2">
+			<input type="number" class="form-control" id="phone2" name="phone2"
+				   data-parsley-required="true" data-parsley-maxlength="4" pattern="/^-?\d+\.?\d*$/"
+				   onKeyPress="if(this.value.length==4){return false;}">
+		</div>
+		<span class="mt-2">-</span>
+		<div class="col-sm-2">
+			<input type="number" class="form-control" id="phone3" name="phone3"
+				   data-parsley-required="true" data-parsley-maxlength="4" pattern="/^-?\d+\.?\d*$/"
+				   onKeyPress="if(this.value.length==4){return false;}">
+		</div>
+	</div>
 
-    <div class="form-group has-error">
-        <p class="help-block help-block-error filled" id="server-error"></p>
-    </div>
+	<div class="form-group has-error">
+		<p class="help-block help-block-error filled" id="server-error"></p>
+	</div>
 
-    <div class="form-action-group">
-        <button type="button" class="btn  btn-blue" onclick="history.back()">취소</button>
-        <button type="submit" class="btn  btn-blue">회원가입하기</button>
-    </div>
+	<div class="form-action-group">
+		<button type="button" class="btn  btn-blue" onclick="history.back()">취소</button>
+		<button type="submit" class="btn  btn-blue">회원가입하기</button>
+	</div>
 </form>
 {% endblock %}
 {% block pagejs -%}
@@ -140,18 +144,18 @@
 
         $('#btnCheckId').click(function (e) {
             $.SloAjax.ajaxfunc('/api/auth/duplicate-id', 'POST',
-                JSON.stringify({loginId: $('#loginId').val()}),
+                JSON.stringify({ loginId: $('#loginId').val() }),
                 function (result) {
                     if (result) {
-                        alert('이미 사용중인 아이디입니다.')
+                        alert('이미 사용중인 아이디입니다.');
                     } else {
-                        alert('사용 가능한 아이디 입니다.')
-                        $('#hdCheckId').val($('#loginId').val())
+                        alert('사용 가능한 아이디 입니다.');
+                        $('#hdCheckId').val($('#loginId').val());
                         parsley.validate();
 
                     }
                 });
         });
-    })(jQuery)
+    })(jQuery);
 </script>
 {% endblock %}

@@ -35,21 +35,21 @@ http://localhost:8001/graphql?query={hello}
 
  */
 module.exports = {
-    hello : () => 'hello graphql',
+    hello: () => 'hello graphql',
     nodejs: () => 30,
-    getProduct : async ({id}) => await models.Products.findByPk(parseInt(id)) ,
-    addProduct : async ({input}) => {
+    getProduct: async ({ id }) => await models.Products.findByPk(parseInt(id)),
+    addProduct: async ({ input }) => {
         return await models.Products.create(input);
     },
-    updateProduct : async ({ id , input}) => {
+    updateProduct: async ({ id, input }) => {
         return await models.Products.update(
-            input ,
+            input,
             {
-                where: {id: parseInt(id)}
+                where: { id: parseInt(id) }
             }
         );
     },
-    deleteProduct :  async ({ id }) => {
+    deleteProduct: async ({ id }) => {
         await models.Products.destroy({
             where: {
                 id: parseInt(id)

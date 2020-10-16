@@ -1,7 +1,7 @@
-'use strict'
+'use strict';
 const { Router } = require('express');
-const router = Router()
-const { hasRole } = require('../../common/util/middleware')
+const router = Router();
+const { hasRole } = require('../../common/util/middleware');
 
 router.get('/', (req, res) => {
     res.send('admin app');

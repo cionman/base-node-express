@@ -4,13 +4,15 @@
 {% block content -%}
 <!-- multipart form 에서는 csrf토큰을 아래와 같이 사용해야한다. -->
 <form action="?_csrf={{csrfToken}}" method="post" enctype="multipart/form-data">
-    <table class="table table-bordered">
-        <tr>
-            <th>파일</th>
-            <td><input type="file" name="singleFile" class="form-control" value=""/></td>
-        </tr>
-    </table>
-    <button class="btn btn-primary">작성하기</button>
+	<table class="table table-bordered">
+		<tr>
+			<th>파일</th>
+			<td>
+				<input type="file" name="singleFile" class="form-control" value=""/>
+			</td>
+		</tr>
+	</table>
+	<button class="btn btn-primary">작성하기</button>
 </form>
 
 {% endblock %}

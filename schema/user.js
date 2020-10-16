@@ -1,8 +1,8 @@
 'use strict';
 
-const mongoose = require('mongoose')
-const { Schema } = mongoose
-const { encryptAES256, decryptAES256 } = require('../common/util/crypto.util')
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
+const { encryptAES256, decryptAES256 } = require('../common/util/crypto.util');
 const userSchema = new Schema({
     name: {
         type: String,
@@ -11,24 +11,24 @@ const userSchema = new Schema({
         set: v => encryptAES256(v),
         get: decryptAES256
     },
-    age:{
+    age: {
         type: Number,
         required: true,
     },
-    married:{
-        type:Boolean,
+    married: {
+        type: Boolean,
         required: true,
     },
-    phone:{
+    phone: {
         type: String,
         set: v => encryptAES256(v),
         get: decryptAES256
     },
     comment: String,
-    createdAt:{
+    createdAt: {
         type: Date,
-        default:Date.now
+        default: Date.now
     }
-}, { toJSON: { getters: true } }) // getter 변환을 하는경우 json을 명시적으로 true로 해줘야 한다.
+}, { toJSON: { getters: true } }); // getter 변환을 하는경우 json을 명시적으로 true로 해줘야 한다.
 
-module.exports = mongoose.model('User', userSchema)
+module.exports = mongoose.model('User', userSchema);

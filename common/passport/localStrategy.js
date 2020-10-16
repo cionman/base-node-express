@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
@@ -19,7 +19,7 @@ module.exports = () => {
                         {
                             model: UserRole,
                             attributes: ["roleName", "roleGroup"],
-                            required:false
+                            required: false
                         }
                     ]
                 });

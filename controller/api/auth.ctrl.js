@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const express = require('express');
 const passport = require('passport');
@@ -9,21 +9,21 @@ const { User } = require('../../model');
 
 const router = express.Router();
 
-router.post('/duplicate-id', wrapAsync(async (req, res)=>{
-    console.log(`req body : ${req.body}`)
+router.post('/duplicate-id', wrapAsync(async (req, res) => {
+    console.log(`req body : ${req.body}`);
     const cnt = await User.count({
-        where: {loginId : req.body.loginId}
-    })
-    console.log(`cnt : ${cnt}`)
-    res.json(cnt > 0)
-}))
+        where: { loginId: req.body.loginId }
+    });
+    console.log(`cnt : ${cnt}`);
+    res.json(cnt > 0);
+}));
 
 router.post('/join', isNotLogin, wrapAsync(async (req, res, next) => {
     const { loginId, password, userName, userNick, email, phone1, phone2, phone3 } = req.body;
 
     const exUser = await User.findOne({ where: { loginId } });
     if (exUser) {
-        throw new Error('이미 존재하는 사용자입니다.')
+        throw new Error('이미 존재하는 사용자입니다.');
     }
 
     const hash = await bcrypt.hash(password, 10);
@@ -32,11 +32,11 @@ router.post('/join', isNotLogin, wrapAsync(async (req, res, next) => {
         userName,
         userNick,
         email,
-        phone : phone1 + phone2 + phone3,
+        phone: phone1 + phone2 + phone3,
         password: hash,
     });
     return res.json({
-        msg : "회원가입에 성공했습니다."
+        msg: "회원가입에 성공했습니다."
     });
 
 
