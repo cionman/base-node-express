@@ -86,6 +86,21 @@ exports.getPagingData = (data, page, limit) => {
  */
 exports.compare = (key) => (a, b) => (a[key] > b[key] ? 1 : (a[key] < b[key] ? -1 : 0))
 
+/**
+ * 객체를 불변 상태로 만든다.
+ * 깊은 동결 구현 메서드
+ * @param target
+ * @returns {*}
+ */
+exports.deepFreeze = (target) => {
+
+    if (target && typeof target === 'object') {
+        Object.freeze(target);
+
+        Object.keys(target).forEach(key => deepFreeze(target[key]));
+    }
+    return target;
+}
 
 
 
