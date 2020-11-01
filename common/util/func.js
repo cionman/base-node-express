@@ -102,5 +102,12 @@ exports.deepFreeze = (target) => {
     return target;
 }
 
+/**
+ *  랜덤 정수 출력
+ * @param range range가 10이면 1~10사이 난수 20이면 1~20사이 난수
+ * @returns {number}
+ */
+exports.random = (range) => Math.floor(Math.random() * range, +1);
+
 
 
