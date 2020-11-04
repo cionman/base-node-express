@@ -110,4 +110,12 @@ exports.deepFreeze = (target) => {
 exports.random = (range) => Math.floor(Math.random() * range, +1);
 
 
+/**
+ * 이터러블여부 체크
+ * @param v
+ * @returns {boolean}
+ */
+exports.isIterable = v => v !== null && typeof v[Symbol.iterator] === 'function'
+
+
 
